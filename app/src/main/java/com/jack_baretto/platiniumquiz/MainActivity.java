@@ -1,7 +1,8 @@
 package com.jack_baretto.platiniumquiz;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         List<Choice> choices = generateChoices();
         ChoiceAdapter adapter = new ChoiceAdapter(MainActivity.this, choices);
         choicesView.setAdapter(adapter);
+        Log.i("TEST", "TEST");
     }
 
     /**
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         List<Choice> choices = new ArrayList<>();
         for(int i = 1; i <= 20; i++){
             choices.add(new Choice("Réponse " + i));
+            Log.i("TEST", "TEST");
         }
         return choices;
     }
