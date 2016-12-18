@@ -6,7 +6,9 @@ package com.jack_baretto.platiniumquiz;
  */
 public class Choice {
 
-    /** Label for the choice. */
+    /**
+     * Label for the choice.
+     */
     String label = "";
 
     public Choice(String label) {

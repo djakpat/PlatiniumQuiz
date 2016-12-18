@@ -28,11 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Generate a list of {@link Choice}.
+     *
      * @return list of {@link Choice}.
      */
     private List<Choice> generateChoices() {
         List<Choice> choices = new ArrayList<>();
-        for(int i = 1; i <= 20; i++){
+        for (int i = 1; i <= 20; i++) {
             choices.add(new Choice("Réponse " + i));
             Log.i("TEST", "TEST");
         }

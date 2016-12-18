@@ -18,11 +18,11 @@ public class ChoiceAdapter extends ArrayAdapter<Choice> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.choice, parent, false);
         }
         PropositionViewHolder viewHolder = (PropositionViewHolder) convertView.getTag();
-        if(viewHolder == null){
+        if (viewHolder == null) {
             viewHolder = new PropositionViewHolder();
             viewHolder.label = (TextView) convertView.findViewById(R.id.choice);
             convertView.setTag(viewHolder);
@@ -34,7 +34,7 @@ public class ChoiceAdapter extends ArrayAdapter<Choice> {
         return convertView;
     }
 
-    private class PropositionViewHolder{
+    private class PropositionViewHolder {
         public TextView label;
     }
 }
