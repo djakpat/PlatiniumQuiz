@@ -2,9 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ListView
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="2.09"
+            android:text="La Question" />
+
+        <ListView
         android:id="@+id/choicesView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            android:layout_height="291dp"
+            android:layout_weight="0.58" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="SUBMIT" />
+
+    </LinearLayout>
+
 </RelativeLayout>
 
