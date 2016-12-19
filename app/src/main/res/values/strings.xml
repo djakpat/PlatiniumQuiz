@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PlatiniumQuiz</string>
+    <string name="question_description">A MCQ question.</string>
 </resources>
