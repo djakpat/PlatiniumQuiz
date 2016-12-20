@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChoiceAdapter extends ArrayAdapter<Choice> {
-
 
     public ChoiceAdapter(Context context, List<Choice> choices) {
         super(context, 0, choices);
