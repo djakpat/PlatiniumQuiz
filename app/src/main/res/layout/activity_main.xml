@@ -30,7 +30,7 @@
                 android:text="@string/button_continue"
                 android:contentDescription="@string/button_continue_description"
                 android:textAlignment="center" />
-            </LinearLayout>
+        </LinearLayout>
 
 </LinearLayout>
 
