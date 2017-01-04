@@ -29,7 +29,16 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_continue"
                 android:contentDescription="@string/button_continue_description"
-                android:textAlignment="center" />
+                style="?android:attr/button"/>
+            <Button
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_result"
+                android:contentDescription="@string/button_result_description"
+                android:textAlignment="center"
+                android:visibility="gone"
+                style="?android:attr/button"/>
         </LinearLayout>
 
 </LinearLayout>
