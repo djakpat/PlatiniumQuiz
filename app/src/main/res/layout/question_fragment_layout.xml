@@ -40,6 +40,5 @@
                 android:visibility="gone"
                 style="?android:attr/button"/>
         </LinearLayout>
-
 </LinearLayout>
 
