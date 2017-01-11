@@ -38,6 +38,7 @@
                 android:contentDescription="@string/button_result_description"
                 android:textAlignment="center"
                 android:visibility="gone"
+                android:onClick="sendMessage"
                 style="?android:attr/button"/>
         </LinearLayout>
 </LinearLayout>
