@@ -41,11 +41,15 @@ public class QuestionFragment extends Fragment {
     // Index of the current page of the MCQ.
     private int currentPageIndex = 0;
 
+    private QuizResultManager quizResultManager;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        quizResultManager = QuizResultManager.getInstance();
         return inflater.inflate(R.layout.question_fragment_layout,
                 container, false);
+
     }
 
     @Override
@@ -62,6 +66,7 @@ public class QuestionFragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                quizResultManager.add(5);
                 currentPageIndex ++;
                 questionView.setText(questions.get(currentPageIndex).getQuestion());
                 adapter.clear();
