@@ -91,6 +91,10 @@ public class QuestionFragment extends Fragment {
         return questions;
     }
 
+    /**
+     * Indicates if it's the last page of the MCQ.
+     * @return Vrai if it's the last page of the MCQ.
+     */
     private boolean isLastPage() {
         return currentPageIndex < questions.size();
     }
