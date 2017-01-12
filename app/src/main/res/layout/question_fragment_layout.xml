@@ -24,11 +24,18 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_previous"
+                android:contentDescription="@string/button_previous_description"
+                style="?android:attr/button"/>
+            <Button
                 android:id="@+id/next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_continue"
-                android:contentDescription="@string/button_continue_description"
+                android:text="@string/button_next"
+                android:contentDescription="@string/button_next_description"
                 style="?android:attr/button"/>
             <Button
                 android:id="@+id/result"

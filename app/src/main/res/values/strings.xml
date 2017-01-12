@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">PlatiniumQuiz</string>
     <string name="question_description">A MCQ question.</string>
-    <string name="button_continue">Continue</string>
-    <string name="button_continue_description">Go to the next question.</string>
+    <string name="button_previous">Prev</string>
+    <string name="button_previous_description">Go to the previous question.</string>
+    <string name="button_next">Next</string>
+    <string name="button_next_description">Go to the next question.</string>
     <string name="button_result_description">Get the result of the MCQ.</string>
     <string name="button_result">View result</string>
 </resources>
