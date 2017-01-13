@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baretto.mcq.datamodel.Choice;
+import com.baretto.mcq.datamodel.internals.ChoiceImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -172,8 +175,8 @@ public class QuestionFragment extends Fragment {
         QuestionModel questionModel = new QuestionModel();
         questionModel.setQuestion("Question " + i + " :");
         List<Choice> choices = new ArrayList<>();
-        choices.add(new Choice("Réponse " + i + ".1"));
-        choices.add(new Choice("Réponse " + i + ".2"));
+        choices.add(new ChoiceImpl("Réponse " + i + ".1", true));
+        choices.add(new ChoiceImpl("Réponse " + i + ".2", false));
         questionModel.setChoices(choices);
         return questionModel;
     }
