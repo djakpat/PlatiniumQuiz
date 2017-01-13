@@ -1,5 +1,7 @@
 package com.jack_baretto.platiniumquiz;
 
+import com.baretto.mcq.datamodel.Choice;
+
 import java.util.ArrayList;
 import java.util.List;
 
