@@ -1,7 +1,6 @@
 package com.jack_baretto.platiniumquiz;
 
 import android.support.test.espresso.Espresso;
-import android.support.test.espresso.ViewAssertion;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
@@ -12,7 +11,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 
 /**
@@ -24,7 +22,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 public class QuestionFragmentTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<QuestionActivity> activityRule = new ActivityTestRule<>(QuestionActivity.class);
 
     /**
      * Check if the button to go to the next question is available.
