@@ -5,16 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class QuestionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.question_activity_layout);
     }
 
     public void sendMessage(View view){
-        Intent intent = new Intent(this, QuestionActivity.class);
+        Intent intent = new Intent(this, ResultActivity.class);
         startActivity(intent);
 
     }
