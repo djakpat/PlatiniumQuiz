@@ -6,15 +6,21 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baretto.mcq.datamodel.AnswerConstraint;
 import com.baretto.mcq.datamodel.Choice;
+import com.baretto.mcq.datamodel.Question;
 import com.baretto.mcq.datamodel.internals.ChoiceImpl;
+import com.baretto.mcq.datamodel.internals.QuestionImpl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Fragment for a MCQ question.
@@ -42,7 +48,7 @@ public class QuestionFragment extends Fragment {
     private Button resultButton;
 
     /** Questions of the MCQ. **/
-    private List<QuestionModel> questions = new ArrayList<>();
+    private List<Question> questions = new ArrayList<>();
 
     /** Index of the current page of the MCQ. */
     private int currentPageIndex = 0;
@@ -66,8 +72,9 @@ public class QuestionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         questions = this.getMCQQuestions();
         questionView = (TextView) view.findViewById(R.id.question);
-        questionView.setText(questions.get(currentPageIndex).getQuestion());
+        questionView.setText(questions.get(currentPageIndex).getLabel());
         choicesView = (ListView) view.findViewById(R.id.choicesView);
+        choicesView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         List<Choice> datas = new ArrayList<>();
         datas.addAll(questions.get(0).getChoices());
         adapter = new ChoiceAdapter(this.getActivity(), datas);
@@ -136,7 +143,7 @@ public class QuestionFragment extends Fragment {
      * Refresh the MCQ question and it's choices.
      */
     private void refreshQuestion() {
-        questionView.setText(questions.get(currentPageIndex).getQuestion());
+        questionView.setText(questions.get(currentPageIndex).getLabel());
         adapter.clear();
         adapter.addAll(questions.get(currentPageIndex).getChoices());
         adapter.notifyDataSetChanged();
@@ -144,10 +151,10 @@ public class QuestionFragment extends Fragment {
 
     /**
      * Get all the questions for the MCQ.
-     * @return The {@link QuestionModel} list.
+     * @return The {@link Question} list.
      */
-    private List<QuestionModel> getMCQQuestions(){
-        List<QuestionModel> questions = new ArrayList<>();
+    private List<Question> getMCQQuestions(){
+        List<Question> questions = new ArrayList<>();
         questions.add(generateQuestionModel(1));
         questions.add(generateQuestionModel(2));
         return questions;
@@ -168,16 +175,14 @@ public class QuestionFragment extends Fragment {
     private boolean isFirstPage() { return currentPageIndex == 0; }
 
     /**
-     * Generate a {@link QuestionModel}for a question.
-     * @return a {@link QuestionModel}.
+     * Generate a {@link Question}for a question.
+     * @return a {@link Question}.
      */
-    private QuestionModel generateQuestionModel(int i) {
-        QuestionModel questionModel = new QuestionModel();
-        questionModel.setQuestion("Question " + i + " :");
-        List<Choice> choices = new ArrayList<>();
-        choices.add(new ChoiceImpl("Réponse " + i + ".1", true));
-        choices.add(new ChoiceImpl("Réponse " + i + ".2", false));
-        questionModel.setChoices(choices);
+    private Question generateQuestionModel(int i) {
+        Set<Choice> choices = new HashSet<>();
+        choices.add(new ChoiceImpl("Réponse " + i + ".1"));
+        choices.add(new ChoiceImpl("Réponse " + i + ".2"));
+        QuestionImpl questionModel = new QuestionImpl("Question " + i + " :", choices, new HashSet<Choice>(), AnswerConstraint.ONE_RESPONSE);
         return questionModel;
     }
 }
