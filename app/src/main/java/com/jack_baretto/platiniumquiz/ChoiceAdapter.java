@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.Choice;
@@ -26,17 +27,28 @@ public class ChoiceAdapter extends ArrayAdapter<Choice> {
         PropositionViewHolder viewHolder = (PropositionViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new PropositionViewHolder();
-            viewHolder.label = (TextView) convertView.findViewById(R.id.choice);
+            viewHolder.checkBox = (CheckBox) convertView.findViewById(R.id.checkBox);
             convertView.setTag(viewHolder);
         }
         //getItem(position) va récupérer l'item [position] de la liste
         Choice choice = getItem(position);
         //il ne reste plus qu'à remplir notre vue
-        viewHolder.label.setText(choice.getLabel());
+        viewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckBox checkBox = (CheckBox) v;
+                Choice currentChoice = (Choice) checkBox.getTag();
+                currentChoice.setSelected(((CheckBox) v).isChecked());
+            }
+        });
+        viewHolder.checkBox.setTag(choice);
+        viewHolder.checkBox.setText(choice.getLabel());
+        viewHolder.checkBox.setChecked(choice.isSelected());
         return convertView;
     }
 
+
     private class PropositionViewHolder{
-        public TextView label;
+        public CheckBox checkBox;
     }
 }
