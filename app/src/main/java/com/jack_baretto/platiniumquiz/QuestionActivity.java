@@ -19,8 +19,13 @@ public class QuestionActivity extends AppCompatActivity {
         }
 
     public void sendMessage(View view){
+
+        QuestionFragment fragmentById = (QuestionFragment) this.getFragmentManager().findFragmentById(R.id.list);
+        fragmentById.updateSelectedChoice();
         Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra("Mcq", mcq);
         startActivity(intent);
+
     }
 
     public MCQ getMcq() {

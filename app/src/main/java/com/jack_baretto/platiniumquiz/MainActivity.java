@@ -1,8 +1,8 @@
 package com.jack_baretto.platiniumquiz;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.baretto.mcq.datamodel.internals.MCQ;
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendMessage(View view){
 
-        MCQ mcq = new MCQ(3);
+        MCQ mcq = new MCQ(6);
 
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("Mcq",mcq);
