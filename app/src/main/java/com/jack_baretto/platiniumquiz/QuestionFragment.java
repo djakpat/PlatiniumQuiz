@@ -74,10 +74,10 @@ public class QuestionFragment extends Fragment {
         questionView = (TextView) view.findViewById(R.id.question);
         questionView.setText(questions.get(currentPageIndex).getLabel());
         choicesView = (ListView) view.findViewById(R.id.choicesView);
-        choicesView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        choicesView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         List<Choice> datas = new ArrayList<>();
         datas.addAll(questions.get(0).getChoices());
-        adapter = new ChoiceAdapter(this.getActivity(), datas);
+        adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, true);
         choicesView.setAdapter(adapter);
         resultButton = (Button) view.findViewById(R.id.result);
         addPreviousButton(view);
