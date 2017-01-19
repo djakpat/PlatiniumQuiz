@@ -10,16 +10,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.baretto.mcq.datamodel.AnswerConstraint;
 import com.baretto.mcq.datamodel.Choice;
 import com.baretto.mcq.datamodel.Question;
-import com.baretto.mcq.datamodel.internals.ChoiceImpl;
-import com.baretto.mcq.datamodel.internals.QuestionImpl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Fragment for a MCQ question.
@@ -59,12 +54,12 @@ public class QuestionFragment extends Fragment {
      * Index of the current page of the MCQ.
      */
     private int currentPageIndex = 0;
-    private QuizResultManager quizResultManager;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        quizResultManager = QuizResultManager.getInstance();
+
         return inflater.inflate(R.layout.question_fragment_layout,
                 container, false);
 
@@ -122,7 +117,6 @@ public class QuestionFragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                quizResultManager.add(5);
                 nextButtonAction();
             }
         });
@@ -132,6 +126,7 @@ public class QuestionFragment extends Fragment {
      * Refresh the MCQ question, actualize buttons state.
      */
     private void nextButtonAction() {
+        this.updateSelectedChoice();
         currentPageIndex++;
         refreshQuestion();
         previousButton.setEnabled(true);
@@ -145,6 +140,7 @@ public class QuestionFragment extends Fragment {
      * Refresh the MCQ question, actualize buttons state.
      */
     private void previousButtonAction() {
+        this.updateSelectedChoice();
         currentPageIndex--;
         refreshQuestion();
         nextButton.setEnabled(true);
@@ -161,6 +157,17 @@ public class QuestionFragment extends Fragment {
         adapter.clear();
         adapter.addAll(questions.get(currentPageIndex).getChoices());
         adapter.notifyDataSetChanged();
+    }
+
+    public void updateSelectedChoice() {
+        Question question = questions.get(currentPageIndex);
+        List<Choice> selectedChoices = new ArrayList();
+        for (Choice choice : question.getChoices()) {
+            if (choice.isSelected()) {
+                selectedChoices.add(choice);
+            }
+        }
+        question.setSelectedChoices(selectedChoices);
     }
 
     /**
@@ -194,16 +201,4 @@ public class QuestionFragment extends Fragment {
         return currentPageIndex == 0;
     }
 
-    /**
-     * Generate a {@link Question}for a question.
-     *
-     * @return a {@link Question}.
-     */
-    private Question generateQuestionModel(int i) {
-        Set<Choice> choices = new HashSet<>();
-        choices.add(new ChoiceImpl("Réponse " + i + ".1"));
-        choices.add(new ChoiceImpl("Réponse " + i + ".2"));
-        QuestionImpl questionModel = new QuestionImpl("Question " + i + " :", choices, new HashSet<Choice>(), AnswerConstraint.ONE_RESPONSE);
-        return questionModel;
-    }
 }
