@@ -144,6 +144,7 @@ public class QuestionFragment extends Fragment {
         currentPageIndex--;
         refreshQuestion();
         nextButton.setEnabled(true);
+        resultButton.setVisibility(View.GONE);
         if (isFirstPage()) {
             previousButton.setEnabled(false);
         }
@@ -189,7 +190,7 @@ public class QuestionFragment extends Fragment {
      * @return Vrai if it's the last page of the MCQ.
      */
     private boolean isLastPage() {
-        return currentPageIndex < questions.size();
+        return currentPageIndex == questions.size() - 1;
     }
 
     /**
