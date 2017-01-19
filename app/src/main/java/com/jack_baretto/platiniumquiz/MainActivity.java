@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.baretto.mcq.datamodel.internals.MCQ;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,7 +16,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view){
+
+        MCQ mcq = new MCQ(3);
+
         Intent intent = new Intent(this, QuestionActivity.class);
+        intent.putExtra("Mcq",mcq);
         startActivity(intent);
 
     }
