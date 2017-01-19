@@ -1,18 +1,31 @@
 package com.jack_baretto.platiniumquiz;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import com.baretto.mcq.datamodel.Question;
+import com.baretto.mcq.datamodel.internals.MCQ;
 
 public class ResultActivity extends AppCompatActivity {
-    QuizResultManager quizResultManager;
+
+    private MCQ mcq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        quizResultManager= QuizResultManager.getInstance();
-        Log.i("INFOS", String.valueOf(quizResultManager.getTest()));
+        mcq = (MCQ) getIntent().getSerializableExtra("Mcq");
+
+        int goodResponse = 0;
+        for (Question question : mcq.getQuestions()) {
+            if (question.answerIsCorrect()) {
+                goodResponse++;
+            }
+        }
+
+        TextView result = (TextView) findViewById(R.id.textView);
+        result.setText("vous avez : " + goodResponse + " Bonnes Réponses");
     }
 
 
