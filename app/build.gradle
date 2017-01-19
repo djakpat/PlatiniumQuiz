@@ -26,6 +26,7 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -35,3 +36,18 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.github.Mehdi-Elk:mcq-data-model:0.1-fix'
 }
+
+sourceSets {
+    androidTest {
+        java.srcDir file('src/androidTest/java')
+        resources.srcDir file('src/android/resources')
+    }
+}
+
+task androidTest(type: Test) {
+    testClassesDir = sourceSets.androidTest.output.classesDir
+    classpath = sourceSets.androidTest.runtimeClasspath
+}
+
+
+
