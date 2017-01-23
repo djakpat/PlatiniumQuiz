@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">PlatiniumQuiz</string>
     <string name="question_description">A MCQ question.</string>
+    <string name="constraint_description">a MCQ question Constraint.</string>
     <string name="button_previous">Prev</string>
     <string name="button_previous_description">Go to the previous question.</string>
     <string name="button_next">Next</string>
