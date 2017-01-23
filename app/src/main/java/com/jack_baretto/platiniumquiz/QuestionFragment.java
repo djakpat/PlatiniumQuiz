@@ -35,6 +35,10 @@ public class QuestionFragment extends Fragment {
      */
     private TextView questionView;
     /**
+     * View for the MCQ question constraint.
+     */
+    private TextView constraintView;
+    /**
      * Button to go to the previous question.
      */
     private Button previousButton;
@@ -71,7 +75,7 @@ public class QuestionFragment extends Fragment {
         questions = this.getMCQQuestions();
 
         questionView.setText(questions.get(currentPageIndex).getLabel());
-
+        constraintView.setText(questions.get(currentPageIndex).getAnswerConstraint().toString());
         choicesView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         List<Choice> datas = new ArrayList<>();
         datas.addAll(questions.get(0).getChoices());
@@ -84,6 +88,7 @@ public class QuestionFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         questionView = (TextView) view.findViewById(R.id.question);
+        constraintView = (TextView) view.findViewById(R.id.constraint);
         choicesView = (ListView) view.findViewById(R.id.choicesView);
         resultButton = (Button) view.findViewById(R.id.result);
         addPreviousButton(view);
@@ -155,6 +160,7 @@ public class QuestionFragment extends Fragment {
      */
     private void refreshQuestion() {
         questionView.setText(questions.get(currentPageIndex).getLabel());
+        constraintView.setText(questions.get(currentPageIndex).getAnswerConstraint().toString());
         adapter.clear();
         adapter.addAll(questions.get(currentPageIndex).getChoices());
         adapter.notifyDataSetChanged();

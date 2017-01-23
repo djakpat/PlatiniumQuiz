@@ -3,50 +3,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-        <TextView
-            android:text="@string/question_description"
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/question_description"
+        android:text="@string/question_description"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/constraint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/constraint_description"
+        android:textSize="18sp" />
+    android:textColor="@android:color/red" />
+
+    <ListView
+        android:id="@+id/choicesView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.91" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/previous"
+            style="?android:attr/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/question"
-            android:contentDescription="@string/question_description"
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
+            android:contentDescription="@string/button_previous_description"
+            android:text="@string/button_previous" />
 
-        <ListView
-            android:id="@+id/choicesView"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <LinearLayout
+        <Button
+            android:id="@+id/next"
+            style="?android:attr/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/previous"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button_previous"
-                android:contentDescription="@string/button_previous_description"
-                style="?android:attr/button"/>
-            <Button
-                android:id="@+id/next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button_next"
-                android:contentDescription="@string/button_next_description"
-                style="?android:attr/button"/>
-            <Button
-                android:id="@+id/result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button_result"
-                android:contentDescription="@string/button_result_description"
-                android:textAlignment="center"
-                android:visibility="gone"
-                android:onClick="sendMessage"
-                style="?android:attr/button"/>
-        </LinearLayout>
+            android:contentDescription="@string/button_next_description"
+            android:text="@string/button_next" />
+
+        <Button
+            android:id="@+id/result"
+            style="?android:attr/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_result_description"
+            android:onClick="sendMessage"
+            android:text="@string/button_result"
+            android:textAlignment="center"
+            android:visibility="gone" />
+    </LinearLayout>
 </LinearLayout>
 
