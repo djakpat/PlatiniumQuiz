@@ -35,8 +35,8 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.github.Mehdi-Elk:mcq-data-model:0.1-fix'
     androidTestCompile "org.mockito:mockito-core:2.6.3"
+    compile 'com.github.Mehdi-Elk:mcq-data-model:v0.1-beta-5'
 }
 
 sourceSets {
