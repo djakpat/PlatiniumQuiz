@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendMessage(View view){
 
-        MCQ mcq = new MCQ(2);
+        MCQ mcq = new MCQ(3);
 
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("Mcq",mcq);

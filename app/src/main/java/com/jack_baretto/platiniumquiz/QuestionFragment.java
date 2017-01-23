@@ -75,7 +75,7 @@ public class QuestionFragment extends Fragment {
         choicesView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         List<Choice> datas = new ArrayList<>();
         datas.addAll(questions.get(0).getChoices());
-        adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, true);
+        adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, false);
         choicesView.setAdapter(adapter);
 
     }
