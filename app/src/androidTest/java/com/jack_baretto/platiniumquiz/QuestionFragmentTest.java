@@ -21,8 +21,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 @LargeTest
 public class QuestionFragmentTest {
 
-    @Rule
-    public ActivityTestRule<QuestionActivity> activityRule = new ActivityTestRule<>(QuestionActivity.class);
+   // @Rule
+    //public ActivityTestRule<QuestionActivity> activityRule = new ActivityTestRule<>(QuestionActivity.class);
 
     /**
      * Check if the button to go to the next question is available.
