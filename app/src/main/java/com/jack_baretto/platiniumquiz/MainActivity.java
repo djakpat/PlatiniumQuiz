@@ -8,9 +8,6 @@ import android.widget.SeekBar;
 
 import com.baretto.mcq.datamodel.MCQ;
 
-
-import com.baretto.mcq.datamodel.MCQ;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-
-
     }
 
 
@@ -34,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("Mcq", mcq);
         startActivity(intent);
-
     }
 
     /**
