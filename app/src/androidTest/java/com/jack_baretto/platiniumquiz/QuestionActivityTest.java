@@ -7,7 +7,7 @@ import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.baretto.mcq.datamodel.internals.MCQ;
+import com.baretto.mcq.datamodel.MCQ;
 
 import org.junit.Before;
 import org.junit.Rule;

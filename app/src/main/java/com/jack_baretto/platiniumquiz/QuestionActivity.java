@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.baretto.mcq.datamodel.MCQ;
- test_result
 
 public class QuestionActivity extends AppCompatActivity {
 
