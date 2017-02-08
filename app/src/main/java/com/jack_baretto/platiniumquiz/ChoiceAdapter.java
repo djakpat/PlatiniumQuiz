@@ -42,9 +42,8 @@ public class ChoiceAdapter extends ArrayAdapter<Choice> {
             // if holder created, get tag from view
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.checkBox.setTag(position); // This line is important.
         holder.checkBox.setText(getItem(position).getLabel());
-        Choice currentChoice = (Choice) choices.get(position);
+        Choice currentChoice = choices.get(position);
         // Checked if the choice is already selected
         holder.checkBox.setChecked(currentChoice.isSelected());
         if(this.isSingleChoice){

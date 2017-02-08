@@ -17,6 +17,17 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="118dp"
-        android:text="MCQ"
-        android:onClick="sendMessage"/>
+        android:onClick="sendMessage"
+        android:text="MCQ" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:max="5"
+        android:progress="1" />
+
 </RelativeLayout>

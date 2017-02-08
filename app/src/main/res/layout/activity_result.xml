@@ -2,11 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <TextView
-        android:text="RESULT"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:layout_weight="0.37"
+        android:text="RESULT" />
+
+    <ExpandableListView
+        android:id="@+id/resultQuestionView"
+        android:layout_width="match_parent"
+        android:layout_height="388dp">
+
+    </ExpandableListView>
+
+
 </LinearLayout>
