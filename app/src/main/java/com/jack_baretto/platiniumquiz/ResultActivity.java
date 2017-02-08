@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.Question;
-import com.baretto.mcq.datamodel.internals.MCQ;
+import com.baretto.mcq.datamodel.MCQ;
 
 public class ResultActivity extends AppCompatActivity {
 
