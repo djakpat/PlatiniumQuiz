@@ -11,6 +11,8 @@ import com.baretto.mcq.datamodel.Question;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baretto.mcq.datamodel.MCQ;
+
 public class ResultActivity extends AppCompatActivity {
 
     private MCQ mcq;

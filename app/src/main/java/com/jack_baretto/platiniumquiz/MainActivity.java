@@ -9,6 +9,12 @@ import android.widget.SeekBar;
 import com.baretto.mcq.datamodel.MCQ;
 
 
+import com.baretto.mcq.datamodel.MCQ;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
 
@@ -21,15 +27,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void sendMessage(View view){
 
-
-        int progress = seekBar.getProgress();
-        MCQ mcq = new MCQ(progress);
-
+    public void sendMessage(View view) throws IOException {
+       int progress = seekBar.getProgress();
+        MCQ mcq = generateMCQ();
         Intent intent = new Intent(this, QuestionActivity.class);
-        intent.putExtra("Mcq",mcq);
+        intent.putExtra("Mcq", mcq);
         startActivity(intent);
 
     }
+
+    /**
+     * Extract mcq from json file.
+     *
+     * @return MCQ
+     * @throws IOException
+     */
+    private MCQ generateMCQ() throws IOException {
+        InputStream inputStream = getResources().openRawResource(R.raw.mcqs);
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        int length;
+        while ((length = inputStream.read()) != -1) {
+            stream.write(length);
+        }
+        String json = stream.toString();
+        return new MCQ(json);
+    }
+
+
 }
