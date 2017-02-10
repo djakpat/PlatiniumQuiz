@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="118dp"
         android:onClick="sendMessage"
-        android:text="MCQ" />
+        android:text="@string/button_generate" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -28,6 +28,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
         android:max="50"
-        android:progress="1" />
+        android:progress="10" />
 
 </RelativeLayout>

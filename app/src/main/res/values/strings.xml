@@ -8,4 +8,5 @@
     <string name="button_next_description">Go to the next question.</string>
     <string name="button_result_description">Get the result of the MCQ.</string>
     <string name="button_result">View result</string>
+    <string name="button_generate">MCQ</string>
 </resources>
