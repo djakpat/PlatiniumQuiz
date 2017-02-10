@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void sendMessage(View view) throws IOException {
-       int progress = seekBar.getProgress();
         MCQ mcq = generateMCQ();
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("Mcq", mcq);
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             stream.write(length);
         }
         String json = stream.toString();
-        return new MCQ(json);
+        return new MCQ(json,seekBar.getProgress());
     }
 
 

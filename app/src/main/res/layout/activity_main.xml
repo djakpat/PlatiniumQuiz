@@ -27,7 +27,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
-        android:max="5"
+        android:max="50"
         android:progress="1" />
 
 </RelativeLayout>
