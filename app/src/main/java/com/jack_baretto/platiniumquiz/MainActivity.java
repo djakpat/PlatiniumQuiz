@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                progress = progress * 10 + 10;
+                progress = progressConverter(progress);
                 numbersOfQuestion.setText("nombres de questions : " + progress);
             }
 
@@ -41,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+    /**
+     * Convert progress value in order to retrieve discret value with by 10.
+     * @TODO find an other way to have this behaviour. Mayne seekbar isn't appropriate.
+     */
+    private int progressConverter(int progress) {
+        progress = progress * 10 + 10;
+        return progress;
     }
 
 
@@ -66,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
             stream.write(length);
         }
         String json = stream.toString();
-        return new MCQ(json,seekBar.getProgress());
+        final int numberOfQuestions = progressConverter(seekBar.getProgress());
+        return new MCQ(json, numberOfQuestions);
     }
 
 
