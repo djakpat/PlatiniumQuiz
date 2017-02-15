@@ -5,6 +5,14 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/questionNumber"
+        android:layout_weight="0.02"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
         android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,8 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/constraint_description"
-        android:textSize="18sp" />
-    android:textColor="@android:color/red" />
+        android:textSize="18sp"/>
 
     <ListView
         android:id="@+id/choicesView"

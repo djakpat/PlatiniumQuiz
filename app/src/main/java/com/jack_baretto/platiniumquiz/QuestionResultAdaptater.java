@@ -14,6 +14,7 @@ import com.baretto.mcq.datamodel.Question;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by WORK on 27/01/2017.
@@ -22,31 +23,18 @@ import java.util.List;
 public class QuestionResultAdaptater extends BaseExpandableListAdapter {
 
 
+    private final Map<Question, Integer> questionNumberByQuestion;
     private Context _context;
-    // private List<String> _listDataHeader; // header titles
-    // child data in format of header title, child title
-    // private HashMap<String, List<String>> _listDataChild;
 
     private List<Question> dataQuestions;
 
 
-    public QuestionResultAdaptater() {
-        super();
-    }
-
-    /*public QuestionResultAdaptater(Context context, List<String> listDataHeader,
-                                   HashMap<String, List<String>> listChildData) {
-        this._context = context;
-        this._listDataHeader = listDataHeader;
-        this._listDataChild = listChildData;
-    }*/
-
-    public QuestionResultAdaptater(ResultActivity resultActivity, List<Question> failedQuestions) {
+    public QuestionResultAdaptater(ResultActivity resultActivity, List<Question> failedQuestions, Map<Question, Integer> questionNumberByQuestion) {
         this._context = resultActivity;
         this.dataQuestions = failedQuestions;
-
-
+        this.questionNumberByQuestion = questionNumberByQuestion;
     }
+
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
@@ -135,7 +123,9 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
                 .findViewById(R.id.lblListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerQuestion.getLabel());
-
+        TextView questioNumber = (TextView) convertView.findViewById(R.id.questionNumber);
+        String questionNumberValue = String.valueOf(questionNumberByQuestion.get(headerQuestion));
+        questioNumber.setText(questionNumberValue);
         return convertView;
     }
 

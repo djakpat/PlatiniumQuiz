@@ -39,6 +39,10 @@ public class QuestionFragment extends Fragment {
      */
     private TextView constraintView;
     /**
+     * Vie for the MCQ question number.
+     */
+    private TextView questionNumber;
+    /**
      * Button to go to the previous question.
      */
     private Button previousButton;
@@ -70,6 +74,18 @@ public class QuestionFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        questionView = (TextView) view.findViewById(R.id.question);
+        constraintView = (TextView) view.findViewById(R.id.constraint);
+        choicesView = (ListView) view.findViewById(R.id.choicesView);
+        resultButton = (Button) view.findViewById(R.id.result);
+        questionNumber = (TextView) view.findViewById(R.id.questionNumber);
+        addPreviousButton(view);
+        addNextButton(view);
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         questions = this.getMCQQuestions();
@@ -77,22 +93,14 @@ public class QuestionFragment extends Fragment {
         questionView.setText(questions.get(currentPageIndex).getLabel());
         constraintView.setText(questions.get(currentPageIndex).getAnswerConstraint().toString());
         choicesView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        String questionNumberValue = String.valueOf(currentPageIndex +1);
+        questionNumber.setText(questionNumberValue);
+
         List<Choice> datas = new ArrayList<>();
         datas.addAll(questions.get(0).getChoices());
         adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, false);
         choicesView.setAdapter(adapter);
 
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        questionView = (TextView) view.findViewById(R.id.question);
-        constraintView = (TextView) view.findViewById(R.id.constraint);
-        choicesView = (ListView) view.findViewById(R.id.choicesView);
-        resultButton = (Button) view.findViewById(R.id.result);
-        addPreviousButton(view);
-        addNextButton(view);
     }
 
 
@@ -161,6 +169,8 @@ public class QuestionFragment extends Fragment {
     private void refreshQuestion() {
         questionView.setText(questions.get(currentPageIndex).getLabel());
         constraintView.setText(questions.get(currentPageIndex).getAnswerConstraint().toString());
+        String questionNumberValue = String.valueOf(currentPageIndex +1);
+        questionNumber.setText(questionNumberValue);
         adapter.clear();
         adapter.addAll(questions.get(currentPageIndex).getChoices());
         adapter.notifyDataSetChanged();
