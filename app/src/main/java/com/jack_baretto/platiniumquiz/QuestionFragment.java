@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baretto.mcq.datamodel.AnswerConstraint;
 import com.baretto.mcq.datamodel.Choice;
 import com.baretto.mcq.datamodel.Question;
 
@@ -90,8 +91,9 @@ public class QuestionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         questions = this.getMCQQuestions();
 
-        questionView.setText(questions.get(currentPageIndex).getLabel());
-        constraintView.setText(questions.get(currentPageIndex).getAnswerConstraint().toString());
+        Question question = questions.get(currentPageIndex);
+        questionView.setText(question.getLabel());
+        constraintView.setText(retrieveConstraintLabel(question));
         choicesView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         String questionNumberValue = String.valueOf(currentPageIndex +1);
         questionNumber.setText(questionNumberValue);
@@ -167,13 +169,27 @@ public class QuestionFragment extends Fragment {
      * Refresh the MCQ question and it's choices.
      */
     private void refreshQuestion() {
-        questionView.setText(questions.get(currentPageIndex).getLabel());
-        constraintView.setText(questions.get(currentPageIndex).getAnswerConstraint().toString());
+        Question question = questions.get(currentPageIndex);
+        questionView.setText(question.getLabel());
+        constraintView.setText(retrieveConstraintLabel(question));
         String questionNumberValue = String.valueOf(currentPageIndex +1);
         questionNumber.setText(questionNumberValue);
         adapter.clear();
-        adapter.addAll(questions.get(currentPageIndex).getChoices());
+        adapter.addAll(question.getChoices());
         adapter.notifyDataSetChanged();
+    }
+
+    private String retrieveConstraintLabel(Question question) {
+        AnswerConstraint answerConstraint = questions.get(currentPageIndex).getAnswerConstraint();
+        if(AnswerConstraint.ALL_THAT_APPLY == answerConstraint ){
+            return "Check all that apply.";
+        }else if(AnswerConstraint.ONE_RESPONSE == answerConstraint){
+            return "Check 1 choice.";
+        }else if(AnswerConstraint.N_RESPONSES == answerConstraint){
+            int numberOfCorrectChoices = question.retrieveNumberOfCorrectChoices();
+            return "Check " + numberOfCorrectChoices + " choices.";
+        }
+        return answerConstraint.toString();
     }
 
     public void updateSelectedChoice() {
