@@ -22,12 +22,20 @@
 
     <SeekBar
         android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
-        android:max="50"
-        android:progress="10" />
+        android:max="4"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/numbersOfQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button" />
 
 </RelativeLayout>

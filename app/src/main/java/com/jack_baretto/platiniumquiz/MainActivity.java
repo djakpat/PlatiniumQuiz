@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.MCQ;
 
@@ -14,12 +15,32 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
+    TextView numbersOfQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar.incrementProgressBy(10);
+        numbersOfQuestion = (TextView) findViewById(R.id.numbersOfQuestion);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                progress = progress * 10 + 10;
+                numbersOfQuestion.setText("nombres de questions : " + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
 
