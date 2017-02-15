@@ -16,9 +16,11 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_activity_layout);
         mcq = (MCQ) getIntent().getSerializableExtra("Mcq");
-        }
+        Boolean timeroption = (Boolean) getIntent().getSerializableExtra("timerOption");
+        System.err.println("Timer option" + timeroption);
+    }
 
-    public void sendMessage(View view){
+    public void sendMessage(View view) {
 
         QuestionFragment fragmentById = (QuestionFragment) this.getFragmentManager().findFragmentById(R.id.list);
         fragmentById.updateSelectedChoice();

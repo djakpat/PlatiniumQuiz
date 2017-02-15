@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.MCQ;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
     TextView numbersOfQuestion;
+    Switch timerOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.incrementProgressBy(10);
         numbersOfQuestion = (TextView) findViewById(R.id.numbersOfQuestion);
+        timerOption = (Switch) findViewById(R.id.timer);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         MCQ mcq = generateMCQ();
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("Mcq", mcq);
+        intent.putExtra("timerOption", timerOption.isChecked());
         startActivity(intent);
     }
 
