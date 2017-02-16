@@ -47,7 +47,7 @@ public class ResultActivity extends AppCompatActivity {
             questionNumber++;
         }
 
-        updateResultText(goodResponse, mcq.getQuestions().size());
+        showResult(goodResponse, mcq.getQuestions().size());
 
         ExpandableListView expandableListView = (ExpandableListView) findViewById(R.id.resultQuestionView);
         QuestionResultAdaptater questionResultAdaptater = new QuestionResultAdaptater(this, failedQuestions, questionNumberByQuestion);
@@ -57,36 +57,37 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
-    private void updateResultText(int goodResponse, int questionsSize) {
+    private void showResult(int goodResponse, int questionsSize) {
 
         int resulRate = Math.round(((float) goodResponse / (float) questionsSize) * 100);
 
         if (resulRate < minimumSucessRate) {
 
-            X(goodResponse, "FAILED", Color.RED, resulRate + "%");
-
+            updateResulText(goodResponse, getString(R.string.failed), Color.RED, resulRate + "%", questionsSize);
 
         } else {
 
-            X(goodResponse, "PASSED", Color.GREEN, resulRate + "%");
-
-
+            updateResulText(goodResponse, getString(R.string.passed), Color.GREEN, resulRate + "%", questionsSize);
         }
 
 
     }
 
-    private void X(int goodResponse, String failed, int red, String text) {
+    private void updateResulText(int goodResponse, String failed, int red, String TheSucessRate, int size) {
         TextView result = (TextView) findViewById(R.id.result);
         result.setText(failed);
         result.setTextColor(red);
 
         TextView sucessRate = (TextView) findViewById(R.id.sucessRate);
-        sucessRate.setText(text);
+        sucessRate.setText(TheSucessRate);
         sucessRate.setTextColor(red);
-        TextView resultTest = (TextView) findViewById(R.id.resultText);
 
-        resultTest.setText("You have : " + goodResponse + " good answers");
+        TextView resultTest = (TextView) findViewById(R.id.resultText);
+        resultTest.setText(getString(R.string.you_have) + " : " + goodResponse + " / " + size + " " + getString(R.string.good_answers));
+
+
+        TextView wrongAnswers = (TextView) findViewById(R.id.wrong_answer);
+        wrongAnswers.setText(R.string.wrong_answers);
     }
 
 
