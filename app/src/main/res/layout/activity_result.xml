@@ -5,17 +5,38 @@ android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:text="RESULT"
+        android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/sucessRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RATE"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/resultText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.37"
-        android:text="RESULT" />
+        android:text="TextView"
+        android:textSize="18sp" />
 
     <ExpandableListView
         android:id="@+id/resultQuestionView"
         android:layout_width="match_parent"
-        android:layout_height="388dp">
+        android:layout_height="wrap_content">
 
     </ExpandableListView>
 
