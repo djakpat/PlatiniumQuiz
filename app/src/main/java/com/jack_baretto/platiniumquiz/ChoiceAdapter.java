@@ -12,7 +12,7 @@ import com.baretto.mcq.datamodel.Choice;
 import java.util.List;
 
 public class ChoiceAdapter extends ArrayAdapter<Choice> {
-
+    private static final char[] choiceIdentifier = "ABCDEFGHIJKLMNOP".toCharArray();
     private List<Choice> choices;
     private Activity activity;
     private int selectedPosition = -1;
@@ -42,7 +42,8 @@ public class ChoiceAdapter extends ArrayAdapter<Choice> {
             // if holder created, get tag from view
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.checkBox.setText(getItem(position).getLabel());
+
+        holder.checkBox.setText(retrieveChoiceLabel(position));
         Choice currentChoice = choices.get(position);
         // Checked if the choice is already selected
         holder.checkBox.setChecked(currentChoice.isSelected());
@@ -52,6 +53,10 @@ public class ChoiceAdapter extends ArrayAdapter<Choice> {
             holder.checkBox.setOnClickListener(onStateChangedMultipleChoiceListener(holder.checkBox, position));
         }
         return convertView;
+    }
+
+    private String retrieveChoiceLabel(int position) {
+        return choiceIdentifier[position] + ") " +getItem(position).getLabel();
     }
 
     private View.OnClickListener onStateChangedMultipleChoiceListener(final CheckBox checkBox, final int position) {

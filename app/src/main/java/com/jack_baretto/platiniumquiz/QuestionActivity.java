@@ -2,6 +2,7 @@ package com.jack_baretto.platiniumquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -16,8 +17,21 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_activity_layout);
         mcq = (MCQ) getIntent().getSerializableExtra("Mcq");
-        Boolean timeroption = (Boolean) getIntent().getSerializableExtra("timerOption");
-        System.err.println("Timer option" + timeroption);
+        Boolean timerOption = (Boolean) getIntent().getSerializableExtra("timerOption");
+        if(timerOption){
+            CountDownTimer timer = new CountDownTimer(300000,1000)  {
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                }
+            };
+        }
+
     }
 
     public void sendMessage(View view) {
