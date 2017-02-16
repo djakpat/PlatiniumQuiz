@@ -2,6 +2,7 @@ package com.jack_baretto.platiniumquiz;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,10 +69,8 @@ public class QuestionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.question_fragment_layout,
                 container, false);
-
     }
 
     @Override
@@ -95,7 +94,7 @@ public class QuestionFragment extends Fragment {
         questionView.setText(question.getLabel());
         constraintView.setText(retrieveConstraintLabel(question));
         choicesView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        String questionNumberValue = String.valueOf(currentPageIndex +1);
+        String questionNumberValue = retrieveQuestionNumberValue();
         questionNumber.setText(questionNumberValue);
 
         List<Choice> datas = new ArrayList<>();
@@ -103,6 +102,11 @@ public class QuestionFragment extends Fragment {
         adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, false);
         choicesView.setAdapter(adapter);
 
+    }
+
+    @NonNull
+    private String retrieveQuestionNumberValue() {
+        return "Question "+ String.valueOf(currentPageIndex +1) +" of " + questions.size();
     }
 
 
@@ -172,7 +176,7 @@ public class QuestionFragment extends Fragment {
         Question question = questions.get(currentPageIndex);
         questionView.setText(question.getLabel());
         constraintView.setText(retrieveConstraintLabel(question));
-        String questionNumberValue = String.valueOf(currentPageIndex +1);
+        String questionNumberValue = retrieveQuestionNumberValue();
         questionNumber.setText(questionNumberValue);
         adapter.clear();
         adapter.addAll(question.getChoices());
