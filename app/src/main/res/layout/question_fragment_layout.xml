@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
         android:id="@+id/questionNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_weight="0.01"
-        android:textSize="18sp"
+        android:paddingLeft="5dp"
         android:textColor="@android:color/black"
-        android:layout_height="wrap_content" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0.01"
         android:contentDescription="@string/question_description"
+        android:paddingLeft="5dp"
         android:text="@string/question_description"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
@@ -25,9 +30,11 @@
         android:id="@+id/constraint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.00"
+        android:paddingLeft="5dp"
         android:text="@string/constraint_description"
-        android:textSize="18sp"
-        android:layout_weight="0.04" />
+        android:textSize="18sp" />
 
     <ListView
         android:id="@+id/choicesView"
