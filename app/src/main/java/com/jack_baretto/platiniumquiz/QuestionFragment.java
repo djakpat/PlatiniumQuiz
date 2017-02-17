@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -112,7 +113,7 @@ public class QuestionFragment extends Fragment {
 
     private void launchTimer() {
         QuestionActivity activity = (QuestionActivity) this.getActivity();
-        activity.getTimer().start();
+        activity.initializeTimer();
     }
 
     @NonNull
