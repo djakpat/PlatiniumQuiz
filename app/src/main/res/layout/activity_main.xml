@@ -29,23 +29,24 @@
         android:layout_alignStart="@+id/button" />
 
     <Switch
-        android:text="@string/switch_timer"
+        android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:id="@+id/timer"
-        android:layout_below="@+id/seekBar"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp" />
+        android:layout_below="@+id/seekBar"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/switch_timer" />
 
     <Button
         android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="sendMessage"
-        android:text="@string/button_generate"
-        android:layout_marginBottom="53dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp"
+        android:onClick="sendMessage"
+        android:text="@string/button_generate" />
 
 </RelativeLayout>
