@@ -4,19 +4,19 @@
     android:layout_height="wrap_content"
     android:background="#22bee6"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="6dp">
 
     <TextView
         android:id="@+id/questionNumber"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textSize="17dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/lblListHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textSize="17dp" />
+        android:textSize="16dp" />
 </LinearLayout>
