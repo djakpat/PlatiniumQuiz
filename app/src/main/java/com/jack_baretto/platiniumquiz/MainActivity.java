@@ -1,38 +1,86 @@
 package com.jack_baretto.platiniumquiz;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ListView;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.SeekBar;
+import android.widget.Switch;
+import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.baretto.mcq.datamodel.MCQ;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
-
-    /*
-     * View for the answer choices.
-     */
-    ListView choicesView;
+    SeekBar seekBar;
+    TextView numbersOfQuestion;
+    Switch timerOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        choicesView = (ListView) findViewById(R.id.choicesView);
-        List<Choice> choices = generateChoices();
-        ChoiceAdapter adapter = new ChoiceAdapter(MainActivity.this, choices);
-        choicesView.setAdapter(adapter);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        seekBar.incrementProgressBy(10);
+        numbersOfQuestion = (TextView) findViewById(R.id.numbersOfQuestion);
+        timerOption = (Switch) findViewById(R.id.timer);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                progress = progressConverter(progress);
+                numbersOfQuestion.setText("nombres de questions : " + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+    /**
+     * Convert progress value in order to retrieve discret value with by 10.
+     * @TODO find an other way to have this behaviour. Mayne seekbar isn't appropriate.
+     */
+    private int progressConverter(int progress) {
+        progress = progress * 10 + 10;
+        return progress;
+    }
+
+
+    public void sendMessage(View view) throws IOException {
+        MCQ mcq = generateMCQ();
+        Intent intent = new Intent(this, QuestionActivity.class);
+        intent.putExtra("Mcq", mcq);
+        intent.putExtra("timerOption", timerOption.isChecked());
+        startActivity(intent);
     }
 
     /**
-     * Generate a list of {@link Choice}.
-     * @return list of {@link Choice}.
+     * Extract mcq from json file.
+     *
+     * @return MCQ
+     * @throws IOException
      */
-    private List<Choice> generateChoices() {
-        List<Choice> choices = new ArrayList<>();
-        for(int i = 1; i <= 20; i++){
-            choices.add(new Choice("Réponse " + i));
+    private MCQ generateMCQ() throws IOException {
+        InputStream inputStream = getResources().openRawResource(R.raw.mcqs);
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        int length;
+        while ((length = inputStream.read()) != -1) {
+            stream.write(length);
         }
-        return choices;
+        String json = stream.toString();
+        final int numberOfQuestions = progressConverter(seekBar.getProgress());
+        return new MCQ(json, numberOfQuestions);
     }
+
+
 }

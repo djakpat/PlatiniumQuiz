@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">PlatiniumQuiz</string>
+    <string name="question_description">A MCQ question.</string>
+    <string name="constraint_description">a MCQ question Constraint.</string>
+    <string name="button_previous">Prev</string>
+    <string name="button_previous_description">Go to the previous question.</string>
+    <string name="button_next">Next</string>
+    <string name="button_next_description">Go to the next question.</string>
+    <string name="button_result_description">Get the result of the MCQ.</string>
+    <string name="button_result">View result</string>
+    <string name="button_generate">MCQ</string>
+    <string name="switch_timer">Timer</string>
+    <string name="failed">FAILED</string>
+    <string name="passed">PASSED</string>
+    <string name="you_have">You Have</string>
+    <string name="good_answers">correct answers</string>
+    <string name="wrong_answers"> Below your wrong answers</string>
+    wrong answers
 </resources>
