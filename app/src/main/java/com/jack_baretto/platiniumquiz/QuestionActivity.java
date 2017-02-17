@@ -12,17 +12,22 @@ public class QuestionActivity extends AppCompatActivity {
 
     MCQ mcq;
 
+    private CountDownTimer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_activity_layout);
         mcq = (MCQ) getIntent().getSerializableExtra("Mcq");
         Boolean timerOption = (Boolean) getIntent().getSerializableExtra("timerOption");
-        if(timerOption){
-            CountDownTimer timer = new CountDownTimer(300000,1000)  {
+        //if(timerOption){
+            timer = new CountDownTimer(300000,1000)  {
                 @Override
                 public void onTick(long millisUntilFinished) {
-
+                    System.err.println("ontick : " + millisUntilFinished);
+                    QuestionFragment questionFragment =  (QuestionFragment) getFragmentManager().findFragmentById(R.id.list);
+                    if(questionFragment!=null){
+                        questionFragment.updateTimer(millisUntilFinished / 1000);
+                    }
                 }
 
                 @Override
@@ -30,21 +35,24 @@ public class QuestionActivity extends AppCompatActivity {
 
                 }
             };
-        }
+
+        //}
 
     }
 
     public void sendMessage(View view) {
-
         QuestionFragment fragmentById = (QuestionFragment) this.getFragmentManager().findFragmentById(R.id.list);
         fragmentById.updateSelectedChoice();
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("Mcq", mcq);
         startActivity(intent);
-
     }
 
     public MCQ getMcq() {
         return mcq;
+    }
+
+    public CountDownTimer getTimer() {
+        return timer;
     }
 }

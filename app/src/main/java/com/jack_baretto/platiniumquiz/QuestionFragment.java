@@ -44,6 +44,9 @@ public class QuestionFragment extends Fragment {
      * Vie for the MCQ question number.
      */
     private TextView questionNumber;
+
+
+    private TextView timer;
     /**
      * Button to go to the previous question.
      */
@@ -81,6 +84,7 @@ public class QuestionFragment extends Fragment {
         choicesView = (ListView) view.findViewById(R.id.choicesView);
         resultButton = (Button) view.findViewById(R.id.result);
         questionNumber = (TextView) view.findViewById(R.id.questionNumber);
+        timer = (TextView) view.findViewById(R.id.timer);
         addPreviousButton(view);
         addNextButton(view);
     }
@@ -89,6 +93,8 @@ public class QuestionFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         questions = this.getMCQQuestions();
+
+        this.launchTimer();
 
         Question question = questions.get(currentPageIndex);
         questionView.setText(question.getLabel());
@@ -104,9 +110,14 @@ public class QuestionFragment extends Fragment {
 
     }
 
+    private void launchTimer() {
+        QuestionActivity activity = (QuestionActivity) this.getActivity();
+        activity.getTimer().start();
+    }
+
     @NonNull
     private String retrieveQuestionNumberValue() {
-        return "Question "+ String.valueOf(currentPageIndex +1) +" of " + questions.size();
+        return "Question " + String.valueOf(currentPageIndex + 1) + " of " + questions.size();
     }
 
 
@@ -185,11 +196,11 @@ public class QuestionFragment extends Fragment {
 
     private String retrieveConstraintLabel(Question question) {
         AnswerConstraint answerConstraint = questions.get(currentPageIndex).getAnswerConstraint();
-        if(AnswerConstraint.ALL_THAT_APPLY == answerConstraint ){
+        if (AnswerConstraint.ALL_THAT_APPLY == answerConstraint) {
             return "Check all that apply.";
-        }else if(AnswerConstraint.ONE_RESPONSE == answerConstraint){
+        } else if (AnswerConstraint.ONE_RESPONSE == answerConstraint) {
             return "Check 1 choice.";
-        }else if(AnswerConstraint.N_RESPONSES == answerConstraint){
+        } else if (AnswerConstraint.N_RESPONSES == answerConstraint) {
             int numberOfCorrectChoices = question.retrieveNumberOfCorrectChoices();
             return "Check " + numberOfCorrectChoices + " choices.";
         }
@@ -238,4 +249,7 @@ public class QuestionFragment extends Fragment {
         return currentPageIndex == 0;
     }
 
+    public void updateTimer(long remaingTimeInSecond) {
+        timer.setText("Remaing time : " + String.valueOf(remaingTimeInSecond));
+    }
 }
