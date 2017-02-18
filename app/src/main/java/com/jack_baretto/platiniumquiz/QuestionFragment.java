@@ -95,8 +95,6 @@ public class QuestionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         questions = this.getMCQQuestions();
 
-        this.launchTimer();
-
         Question question = questions.get(currentPageIndex);
         questionView.setText(question.getLabel());
         constraintView.setText(retrieveConstraintLabel(question));
@@ -111,10 +109,6 @@ public class QuestionFragment extends Fragment {
 
     }
 
-    private void launchTimer() {
-        QuestionActivity activity = (QuestionActivity) this.getActivity();
-        activity.initializeTimer();
-    }
 
     @NonNull
     private String retrieveQuestionNumberValue() {
