@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
-        android:max="4"
+        android:max="3"
         android:progress="0" />
 
     <TextView
@@ -36,6 +36,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="53dp"
+        android:background="@color/colorButton"
         android:onClick="sendMessage"
         android:text="@string/button_generate" />
 
