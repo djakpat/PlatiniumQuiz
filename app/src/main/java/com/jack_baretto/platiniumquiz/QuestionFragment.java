@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -103,10 +102,22 @@ public class QuestionFragment extends Fragment {
         questionNumber.setText(questionNumberValue);
 
         List<Choice> datas = new ArrayList<>();
-        datas.addAll(questions.get(0).getChoices());
-        adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, false);
+        datas.addAll(question.getChoices());
+
+        boolean isSingleChoice = isSingleChoice(question);
+
+
+        adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, isSingleChoice);
         choicesView.setAdapter(adapter);
 
+    }
+
+    private boolean isSingleChoice(Question question) {
+        boolean isSingleChoice = false;
+        if (question.getAnswerConstraint().equals(AnswerConstraint.ONE_RESPONSE)) {
+            isSingleChoice = true;
+        }
+        return isSingleChoice;
     }
 
 
@@ -184,9 +195,9 @@ public class QuestionFragment extends Fragment {
         constraintView.setText(retrieveConstraintLabel(question));
         String questionNumberValue = retrieveQuestionNumberValue();
         questionNumber.setText(questionNumberValue);
-        adapter.clear();
-        adapter.addAll(question.getChoices());
-        adapter.notifyDataSetChanged();
+        final boolean isSingleChoice = isSingleChoice(question);
+        adapter.addChoices(question.getChoices(), isSingleChoice);
+
     }
 
     private String retrieveConstraintLabel(Question question) {

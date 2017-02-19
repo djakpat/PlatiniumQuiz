@@ -25,6 +25,7 @@ public class ChoiceAdapter extends ArrayAdapter<Choice> {
         this.isSingleChoice = isSingleChoice;
     }
 
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -84,6 +85,14 @@ public class ChoiceAdapter extends ArrayAdapter<Choice> {
                 notifyDataSetChanged();
             }
         };
+    }
+
+    public void addChoices(List<Choice> choices, boolean isSingleChoice) {
+        this.clear();
+        this.isSingleChoice = isSingleChoice;
+        this.addAll(choices);
+        this.notifyDataSetChanged();
+
     }
 
     private static class ViewHolder {
