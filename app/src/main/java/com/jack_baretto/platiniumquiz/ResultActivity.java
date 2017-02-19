@@ -1,8 +1,11 @@
 package com.jack_baretto.platiniumquiz;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
@@ -26,9 +29,29 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         mcq = (MCQ) getIntent().getSerializableExtra("Mcq");
 
+
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.restart:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
+    }
     @Override
     protected void onResume() {
         super.onResume();

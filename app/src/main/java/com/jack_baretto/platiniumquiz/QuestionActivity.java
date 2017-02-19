@@ -1,12 +1,10 @@
 package com.jack_baretto.platiniumquiz;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.baretto.mcq.datamodel.MCQ;
@@ -20,6 +18,27 @@ public class QuestionActivity extends AppCompatActivity {
         mcq = (MCQ) getIntent().getSerializableExtra("Mcq");
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.restart:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
     }
 
     public void sendMessage(View view) {
