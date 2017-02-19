@@ -10,23 +10,99 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jack_baretto.platiniumquiz.MainActivity">
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        style="@style/Widget.AppCompat.SeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:max="3"
-        android:progress="0" />
-
     <TextView
-        android:id="@+id/numbersOfQuestion"
+        android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/button" />
+        android:text="@string/welcome"
+        android:textStyle="normal|bold"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
+
+    <RelativeLayout
+    android:id="@+id/settingsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/welcome"
+    android:layout_centerHorizontal="true"
+    android:background="#e7e7e7"
+    android:padding="10dp">
+
+        <TextView
+            android:id="@+id/settingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_title"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/numbersOfQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/settingsTitle"
+            android:text="@string/instructions_question_number" />
+
+        <RelativeLayout
+            android:id="@+id/seekBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/numbersOfQuestion"
+            android:layout_centerHorizontal="true">
+            <SeekBar
+                android:id="@+id/seekBar"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:max="3"
+                android:progress="0"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:layout_margin="1dp"
+                android:contextClickable="false" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/instructionsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingsLayout"
+        android:background="#e7e7e7"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/instructions_description"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/instructionsPassMark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/instructions"
+            android:text="@string/instructions_pass_mark" />
+
+        <TextView
+            android:id="@+id/instructionsQuestionsNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/instructionsPassMark"
+            android:text="@string/instructions_question_number" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/button"
@@ -34,10 +110,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="53dp"
         android:background="@color/colorButton"
         android:onClick="sendMessage"
+        android:layout_centerHorizontal="true"
         android:text="@string/button_generate" />
 
 </RelativeLayout>

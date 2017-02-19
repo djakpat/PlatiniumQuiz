@@ -2,7 +2,9 @@ package com.jack_baretto.platiniumquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -15,21 +17,51 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
-    SeekBar seekBar;
-    TextView numbersOfQuestion;
+
+    /** Increase the progress bar's progress by this specified amount. */
+    private static final int QUESTION_INCREMENT = 10;
+
+    /** Number of questions progress bar. */
+    private SeekBar seekBar;
+
+    /** Number of questions title. */
+    private TextView numbersOfQuestion;
+
+    /** Give the instructions to the user. */
+    private TextView instructions;
+
+    /** Print the number of questions */
+    private TextView instructionsQuestionsNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.incrementProgressBy(10);
+        seekBar.incrementProgressBy(QUESTION_INCREMENT);
         numbersOfQuestion = (TextView) findViewById(R.id.numbersOfQuestion);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        numbersOfQuestion.setText(Html.fromHtml(getString(R.string.instructions_question_number) + "<b>" + Integer.toString(progressConverter(seekBar.getProgress())) + "</b>"));
+        instructions = (TextView) findViewById(R.id.instructions);
+        instructions.setText(getString(R.string.instructions_title) + "\n");
+        instructionsQuestionsNumber = (TextView) findViewById(R.id.instructionsQuestionsNumber);
+        instructionsQuestionsNumber.setText("\u25CF" + getString(R.string.instructions_question_number) + progressConverter(seekBar.getProgress()));
+        TextView instructionsPassMark = (TextView) findViewById(R.id.instructionsPassMark);
+        instructionsPassMark.setText("\u25CF" + getString(R.string.instructions_pass_mark) + getString(R.string.pass_mark_limit) + "%");
+        seekBar.setOnSeekBarChangeListener(getQuestionNumberSeekBarListener());
+    }
+
+    /**
+     *
+     * @return the question seekbar listener.
+     */
+    @NonNull
+    private SeekBar.OnSeekBarChangeListener getQuestionNumberSeekBarListener() {
+        return new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                progress = progressConverter(progress);
-                numbersOfQuestion.setText("nombres de questions : " + progress);
+                numbersOfQuestion.setText(getString(R.string.instructions_question_number) + progressConverter(progress));
+                numbersOfQuestion.setText(Html.fromHtml(getString(R.string.instructions_question_number) + "<b>" + Integer.toString(progressConverter(seekBar.getProgress())) + "</b>"));
+                instructionsQuestionsNumber.setText("\u25CF" + getString(R.string.instructions_question_number) + progressConverter(seekBar.getProgress()));
             }
 
             @Override
@@ -41,14 +73,15 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
-        });
+        };
     }
+
     /**
-     * Convert progress value in order to retrieve discret value with by 10.
+     * Convert progress value in order to retrieve discret value with by {@link MainActivity#QUESTION_INCREMENT}.
      * @TODO find an other way to have this behaviour. Mayne seekbar isn't appropriate.
      */
     private int progressConverter(int progress) {
-        progress = progress * 10 + 10;
+        progress = progress * QUESTION_INCREMENT + QUESTION_INCREMENT;
         return progress;
     }
 
