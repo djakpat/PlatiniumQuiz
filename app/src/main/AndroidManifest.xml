@@ -16,11 +16,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResultActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ResultActivity" />
         <activity
-            android:name=".QuestionActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".QuestionActivity" />
 
     </application>
 
