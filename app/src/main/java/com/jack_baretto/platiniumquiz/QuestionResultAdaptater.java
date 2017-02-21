@@ -74,12 +74,12 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
             selectedImage.setVisibility(View.VISIBLE);
         }
         Question question = (Question) getGroup(groupPosition);
-        if (question.choiceIsCorrect(childChoice)) {
+        if (question.choiceIsCorrect(childChoice) && !childChoice.isSelected()) {
             answerImage.setImageResource(R.drawable.ic_action_done);
             answerImage.setVisibility(View.VISIBLE);
             //myMenuItem.setIcon(android.R.drawable.ic_menu_save);ic_action_done
 
-        } else {
+        } else if (!(question.choiceIsCorrect(childChoice)) && childChoice.isSelected()) {
             answerImage.setImageResource(R.drawable.ic_content_clear);
             answerImage.setVisibility(View.VISIBLE);
 
