@@ -22,4 +22,5 @@
     <string name="instructions_pass_mark">Pass mark of : </string>
     <string name="pass_mark_limit">85</string>
     <string name="settings_title">Quiz settings</string>
+    <string name="about_us">About us</string>
 </resources>

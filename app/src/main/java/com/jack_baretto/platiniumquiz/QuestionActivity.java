@@ -13,7 +13,7 @@ import com.baretto.mcq.datamodel.MCQ;
 
 public class QuestionActivity extends AppCompatActivity {
     private static final String RETAINED_FRAGMENT = "QuestionFragment";
-    MCQ mcq;
+    private MCQ mcq;
     private QuestionFragment questionFragment;
 
 
@@ -45,7 +45,7 @@ public class QuestionActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
-
+    //@FIXME : code duplicate in QuestionActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -53,7 +53,10 @@ public class QuestionActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.aboutus:
+                Intent aboutUs = new Intent(this, AboutUsActivity.class);
+                startActivity(aboutUs);
+                break;
             default:
                 break;
         }

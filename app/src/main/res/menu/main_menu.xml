@@ -7,4 +7,9 @@
         android:icon="@android:drawable/ic_popup_sync"
         android:title="Restart"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/aboutus"
+        android:icon="@android:drawable/ic_popup_sync"
+        android:title="@string/about_us"
+        app:showAsAction="never" />
 </menu>
