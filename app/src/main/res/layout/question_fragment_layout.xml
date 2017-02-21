@@ -7,44 +7,36 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <TextView
-        android:id="@+id/questionNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_weight="0.01"
-        android:paddingLeft="6dp"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:background="@color/background"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/timer"
+            android:id="@+id/questionNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_weight="0.01"
-            android:paddingLeft="6dp"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.01"
-        android:contentDescription="@string/question_description"
-        android:paddingLeft="6dp"
-        android:text="@string/question_description"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/question_description"
+            android:text="@string/question_description"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/constraint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_weight="0.00"
         android:paddingLeft="6dp"
         android:text="@string/constraint_description"

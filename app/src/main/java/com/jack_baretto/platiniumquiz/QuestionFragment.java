@@ -45,8 +45,6 @@ public class QuestionFragment extends Fragment {
      */
     private TextView questionNumber;
 
-
-    private TextView timer;
     /**
      * Button to go to the previous question.
      */
@@ -90,7 +88,6 @@ public class QuestionFragment extends Fragment {
         choicesView = (ListView) view.findViewById(R.id.choicesView);
         resultButton = (Button) view.findViewById(R.id.result);
         questionNumber = (TextView) view.findViewById(R.id.questionNumber);
-        timer = (TextView) view.findViewById(R.id.timer);
         addPreviousButton(view);
         addNextButton(view);
     }
@@ -263,7 +260,4 @@ public class QuestionFragment extends Fragment {
         return currentPageIndex == 0;
     }
 
-    public void updateTimer(long remaingTimeInSecond) {
-        timer.setText("Remaing time : " + String.valueOf(remaingTimeInSecond));
-    }
 }
