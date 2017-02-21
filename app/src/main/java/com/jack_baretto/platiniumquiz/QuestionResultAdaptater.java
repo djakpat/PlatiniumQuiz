@@ -125,7 +125,7 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
         lblListHeader.setText(headerQuestion.getLabel());
         TextView questioNumber = (TextView) convertView.findViewById(R.id.questionNumber);
         String questionNumberValue = String.valueOf(questionNumberByQuestion.get(headerQuestion));
-        questioNumber.setText(questionNumberValue);
+        questioNumber.setText("Question " + questionNumberValue);
         return convertView;
     }
 
