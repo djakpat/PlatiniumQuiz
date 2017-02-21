@@ -14,11 +14,11 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:textStyle="normal|bold"
-        android:textSize="24sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:text="@string/welcome"
+        android:textSize="24sp"
+        android:textStyle="normal|bold" />
 
     <RelativeLayout
     android:id="@+id/settingsLayout"
@@ -26,18 +26,18 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/welcome"
     android:layout_centerHorizontal="true"
-    android:background="#e7e7e7"
+        android:background="@color/background"
     android:padding="10dp">
 
         <TextView
             android:id="@+id/settingsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:text="@string/settings_title"
             android:textSize="18sp"
-            android:textStyle="normal|bold"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/numbersOfQuestion"
@@ -58,12 +58,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:layout_margin="1dp"
+                android:contextClickable="false"
                 android:max="3"
-                android:progress="0"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
-                android:layout_margin="1dp"
-                android:contextClickable="false" />
+                android:progress="0" />
         </RelativeLayout>
 
     </RelativeLayout>
@@ -73,20 +73,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/settingsLayout"
-        android:background="#e7e7e7"
-        android:padding="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:background="@color/background"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/instructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:text="@string/instructions_description"
             android:textSize="18sp"
-            android:textStyle="normal|bold"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/instructionsPassMark"
@@ -110,10 +110,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="53dp"
         android:background="@color/colorButton"
         android:onClick="sendMessage"
-        android:layout_centerHorizontal="true"
         android:text="@string/button_generate" />
 
 </RelativeLayout>

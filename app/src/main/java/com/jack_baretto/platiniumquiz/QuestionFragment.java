@@ -69,6 +69,12 @@ public class QuestionFragment extends Fragment {
     private int currentPageIndex = 0;
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -134,7 +140,9 @@ public class QuestionFragment extends Fragment {
      */
     private void addPreviousButton(View view) {
         previousButton = (Button) view.findViewById(R.id.previous);
-        previousButton.setEnabled(false);
+        if (isFirstPage()) {
+            previousButton.setEnabled(false);
+        }
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
