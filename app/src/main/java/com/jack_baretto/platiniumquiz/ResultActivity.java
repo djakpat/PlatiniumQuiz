@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.MCQ;
@@ -21,6 +23,8 @@ public class ResultActivity extends AppCompatActivity {
 
     private MCQ mcq;
 
+    private Switch showAllSwitch;
+
     private int minimumSucessRate = 85;
 
     @Override
@@ -28,7 +32,16 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         mcq = (MCQ) getIntent().getSerializableExtra("Mcq");
+        showAllSwitch = (Switch) findViewById(R.id.showAll);
 
+        showAllSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
+                InitializeView(isChecked);
+
+            }
+        });
 
     }
 
@@ -55,29 +68,41 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        InitializeView(false);
+    }
 
+
+    private void InitializeView(boolean checked) {
         Map<Question, Integer> questionNumberByQuestion = new HashMap();
         List<Question> failedQuestions = new ArrayList<Question>();
         int goodResponse = 0;
-        int questionNumber =1;
+        int questionNumber = 1;
         for (Question question : mcq.getQuestions()) {
+            questionNumberByQuestion.put(question, questionNumber);
             if (question.answerIsCorrect()) {
                 goodResponse++;
             } else {
                 failedQuestions.add(question);
-                questionNumberByQuestion.put(question, questionNumber);
             }
             questionNumber++;
         }
 
         showResult(goodResponse, mcq.getQuestions().size());
 
+        updateResultListView(checked, questionNumberByQuestion, failedQuestions);
+    }
+
+    private void updateResultListView(boolean checked, Map<Question, Integer> questionNumberByQuestion, List<Question> failedQuestions) {
         ExpandableListView expandableListView = (ExpandableListView) findViewById(R.id.resultQuestionView);
-        QuestionResultAdaptater questionResultAdaptater = new QuestionResultAdaptater(this, failedQuestions, questionNumberByQuestion);
+        QuestionResultAdaptater questionResultAdaptater = null;
+        if (checked) {
+            questionResultAdaptater = new QuestionResultAdaptater(this, mcq.getQuestions(), questionNumberByQuestion);
 
+        } else {
+            questionResultAdaptater = new QuestionResultAdaptater(this, failedQuestions, questionNumberByQuestion);
+        }
         expandableListView.setAdapter(questionResultAdaptater);
-
-
+        questionResultAdaptater.notifyDataSetChanged();
     }
 
     private void showResult(int goodResponse, int questionsSize) {

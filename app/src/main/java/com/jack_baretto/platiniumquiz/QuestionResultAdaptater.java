@@ -2,6 +2,7 @@ package com.jack_baretto.platiniumquiz;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.baretto.mcq.datamodel.Question;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by WORK on 27/01/2017.
@@ -40,7 +42,7 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
     public Object getChild(int groupPosition, int childPosititon) {
         final Question question = dataQuestions.get(groupPosition);
         List<Choice> choices = new ArrayList<>(question.getChoices());
-        if (childPosititon < (this.getChildrenCount(groupPosition)) - 1) {
+        if (childPosititon < choices.size()) {
             return choices.get(childPosititon);
         } else {
             return question.getCorrection();
@@ -115,7 +117,7 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
     public int getChildrenCount(int groupPosition) {
         final Question question = dataQuestions.get(groupPosition);
         List<Choice> choices = new ArrayList<>(question.getChoices());
-        if (question.getCorrection()!=null) {
+        if (Objects.equals(question.getCorrection(), null)) {
             return choices.size();
         } else {
             return choices.size() + 1;
@@ -145,6 +147,11 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_group, null);
+        }
+        if (headerQuestion.answerIsCorrect()) {
+            convertView.setBackgroundColor(ContextCompat.getColor(_context, R.color.colorPrimary));
+        } else {
+            convertView.setBackgroundColor(ContextCompat.getColor(_context, R.color.wrong));
         }
 
         TextView lblListHeader = (TextView) convertView
