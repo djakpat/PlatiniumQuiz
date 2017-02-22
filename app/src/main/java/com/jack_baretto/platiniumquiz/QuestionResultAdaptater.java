@@ -113,9 +113,13 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        List<Choice> choices = new ArrayList<>(dataQuestions.get(groupPosition).getChoices());
-        return choices.size() + 1;
-
+        final Question question = dataQuestions.get(groupPosition);
+        List<Choice> choices = new ArrayList<>(question.getChoices());
+        if (question.getCorrection().isEmpty()) {
+            return choices.size();
+        } else {
+            return choices.size() + 1;
+        }
     }
 
     @Override
