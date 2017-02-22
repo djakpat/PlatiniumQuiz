@@ -17,6 +17,7 @@
         "label": "Its productivity is likely to decrease."
       }
     ],
+    "correction": "It is the correction.",
     "selectedChoices": [],
     "answerConstraint": "ONE_RESPONSE"
   },
@@ -35,6 +36,7 @@
         "label": "True"
       }
     ],
+    "correction": "It is the correction.",
     "selectedChoices": [],
     "answerConstraint": "ONE_RESPONSE"
   },
@@ -62,6 +64,7 @@
         "label": "Talk to the IT manager and explain that progress in Scrum comes from inspecting an Increment at the Sprint Review."
       }
     ],
+    "correction": "It is the correction.",
     "selectedChoices": [],
     "answerConstraint": "ONE_RESPONSE"
   },
@@ -92,6 +95,7 @@
         "label": "All of the above"
       }
     ],
+    "correction": "It is the correction.",
     "selectedChoices": [],
     "answerConstraint": "ONE_RESPONSE"
   },
@@ -119,6 +123,7 @@
         "label": "The Development Team"
       }
     ],
+    "correction": "It is the correction.",
     "selectedChoices": [],
     "answerConstraint": "ONE_RESPONSE"
   },
@@ -146,6 +151,7 @@
         "label": "During Sprint Planning."
       }
     ],
+    "correction": "It is the correction.",
     "selectedChoices": [],
     "answerConstraint": "ONE_RESPONSE"
   },
@@ -164,6 +170,7 @@
         "label": "True"
       }
     ],
+    "correction": "It is the correction.",
     "selectedChoices": [],
     "answerConstraint": "ONE_RESPONSE"
   },
@@ -194,6 +201,7 @@
         "label": "Everyone in the Development Team is responsible for quality"
       }
     ],
+    "correction": "It is the correction.",
     "selectedChoices": [],
     "answerConstraint": "N_RESPONSES"
   },
