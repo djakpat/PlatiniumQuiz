@@ -161,6 +161,10 @@ public class QuestionFragment extends Fragment {
                 nextButtonAction();
             }
         });
+        if (isLastPage()) {
+            nextButton.setEnabled(false);
+            resultButton.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
