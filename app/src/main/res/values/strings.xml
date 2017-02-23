@@ -24,6 +24,6 @@
     <string name="settings_title">Quiz settings</string>
     <string name="about_us">About</string>
     <string name="contact">Contact</string>
-    <string name="description">The Scrum quiz generate an multiple-choice questionnaire in order to test your knowledge of the Srum Framework.</string>
+    <string name="description">Whether you are preparing PSM1, you are coaching a new Agile team or you want to improve your knowledge of the Scrum framework, this app is for you. The Scrum quiz generate an multiple-choice questionnaire in order to test your knowledge of the Scrum Framework.</string>
     <string name="developedby"> Developed by Baretto, 24 Rue Molière 59200 Tourcoing, France</string>
 </resources>
