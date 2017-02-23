@@ -22,5 +22,8 @@
     <string name="instructions_pass_mark">Pass mark of : </string>
     <string name="pass_mark_limit">85</string>
     <string name="settings_title">Quiz settings</string>
-    <string name="about_us">About us</string>
+    <string name="about_us">About</string>
+    <string name="contact">Contact</string>
+    <string name="description">The Scrum quiz generate an multiple-choice questionnaire in order to test your knowledge of the Srum Framework.</string>
+    <string name="developedby"> Developed by Baretto, 24 Rue Molière 59200 Tourcoing, France</string>
 </resources>

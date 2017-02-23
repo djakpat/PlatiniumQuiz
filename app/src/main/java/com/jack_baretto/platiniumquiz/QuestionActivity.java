@@ -2,6 +2,7 @@ package com.jack_baretto.platiniumquiz;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -53,9 +54,16 @@ public class QuestionActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.aboutus:
-                Intent aboutUs = new Intent(this, AboutUsActivity.class);
+            case R.id.about:
+                Intent aboutUs = new Intent(this, AboutActivity.class);
                 startActivity(aboutUs);
+                break;
+            case R.id.contact:
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setType("text/plain");
+                emailIntent.setData(Uri.parse("mailto:scrumquiz.contact@baretto.fr"));
+                startActivity(Intent.createChooser(emailIntent,
+                        "Send Email Using: "));
                 break;
             default:
                 break;

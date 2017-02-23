@@ -8,8 +8,13 @@
         android:title="Restart"
         app:showAsAction="never" />
     <item
-        android:id="@+id/aboutus"
+        android:id="@+id/about"
         android:icon="@android:drawable/ic_popup_sync"
         android:title="@string/about_us"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/contact"
+        android:icon="@android:drawable/ic_popup_sync"
+        android:title="@string/contact"
         app:showAsAction="never" />
 </menu>
