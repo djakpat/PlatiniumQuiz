@@ -13,27 +13,24 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.MCQ;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static java.net.Proxy.Type.HTTP;
-
 public class MainActivity extends AppCompatActivity {
 
     /** Increase the progress bar's progress by this specified amount. */
     private static final int QUESTION_INCREMENT = 10;
-
+    Tracker tracker;
     /** Number of questions progress bar. */
     private SeekBar seekBar;
-
     /** Number of questions title. */
     private TextView numbersOfQuestion;
-
     /** Give the instructions to the user. */
     private TextView instructions;
-
     /** Print the number of questions */
     private TextView instructionsQuestionsNumber;
 
@@ -41,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        tracker = application.getDefaultTracker();
+        tracker.setScreenName("MainActivity");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.incrementProgressBy(QUESTION_INCREMENT);
         numbersOfQuestion = (TextView) findViewById(R.id.numbersOfQuestion);
@@ -125,7 +129,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void sendMessage(View view) throws IOException {
+
+
         MCQ mcq = generateMCQ();
+
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("BUTTON")
+                .setAction("Start_QUIZ")
+                .setValue(mcq.getQuestions().size())
+                .build());
+
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("Mcq", mcq);
         startActivity(intent);

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.baretto.mcq.datamodel.AnswerConstraint;
 import com.baretto.mcq.datamodel.Choice;
 import com.baretto.mcq.datamodel.Question;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,7 @@ public class QuestionFragment extends Fragment {
      * Adapter used for the print the choices.
      */
     ChoiceAdapter adapter;
+    Tracker tracker;
     /*
      * View for the answer choices.
      */
@@ -44,7 +47,6 @@ public class QuestionFragment extends Fragment {
      * Vie for the MCQ question number.
      */
     private TextView questionNumber;
-
     /**
      * Button to go to the previous question.
      */
@@ -66,10 +68,15 @@ public class QuestionFragment extends Fragment {
      */
     private int currentPageIndex = 0;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
+        tracker = application.getDefaultTracker();
+        tracker.setScreenName("QuestionFragment");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         setRetainInstance(true);
     }
 
@@ -171,6 +178,12 @@ public class QuestionFragment extends Fragment {
      * Refresh the MCQ question, actualize buttons state.
      */
     private void nextButtonAction() {
+
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("BUTTON")
+                .setAction("NEXT")
+                .build());
+
         this.updateSelectedChoice();
         currentPageIndex++;
         refreshQuestion();
@@ -185,6 +198,12 @@ public class QuestionFragment extends Fragment {
      * Refresh the MCQ question, actualize buttons state.
      */
     private void previousButtonAction() {
+
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("BUTTON")
+                .setAction("PREV")
+                .build());
+
         this.updateSelectedChoice();
         currentPageIndex--;
         refreshQuestion();

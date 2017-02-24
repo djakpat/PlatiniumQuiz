@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.MCQ;
 import com.baretto.mcq.datamodel.Question;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,22 +23,37 @@ import java.util.Map;
 
 public class ResultActivity extends AppCompatActivity {
 
+    Tracker tracker;
     private MCQ mcq;
-
     private Switch showAllSwitch;
-
     private int minimumSucessRate = 85;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_result);
+
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        tracker = application.getDefaultTracker();
+
+
+        tracker.setScreenName("ResultActivity");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         mcq = (MCQ) getIntent().getSerializableExtra("Mcq");
         showAllSwitch = (Switch) findViewById(R.id.showAll);
 
         showAllSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
+                tracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Feature")
+                        .setAction("use")
+                        .setLabel("showAllSwitch")
+                        .setValue(1)
+                        .build());
 
                 InitializeView(isChecked);
 
@@ -68,6 +85,8 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+
         InitializeView(false);
     }
 
