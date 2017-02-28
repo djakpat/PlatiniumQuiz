@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
 import com.baretto.mcq.datamodel.Choice;
-import com.jack_baretto.platiniumquiz.R;
+
 
 import java.util.List;
 

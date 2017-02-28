@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +16,6 @@ import com.baretto.mcq.datamodel.MCQ;
 import com.baretto.mcq.datamodel.Question;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.jack_baretto.platiniumquiz.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
