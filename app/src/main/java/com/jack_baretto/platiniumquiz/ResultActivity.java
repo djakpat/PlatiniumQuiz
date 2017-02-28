@@ -2,6 +2,7 @@ package com.jack_baretto.platiniumquiz;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -75,7 +76,17 @@ public class ResultActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.about:
+                Intent aboutUs = new Intent(this, AboutActivity.class);
+                startActivity(aboutUs);
+                break;
+            case R.id.contact:
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setType("text/plain");
+                emailIntent.setData(Uri.parse("mailto:scrumquiz.contact@baretto.fr"));
+                startActivity(Intent.createChooser(emailIntent,
+                        "Send Email Using: "));
+                break;
             default:
                 break;
         }
