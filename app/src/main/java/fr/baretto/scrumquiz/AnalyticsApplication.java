@@ -1,9 +1,10 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz;
 
 import android.app.Application;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.jack_baretto.platiniumquiz.R;
 
 
 /**

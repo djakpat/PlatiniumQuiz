@@ -1,4 +1,4 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
 import com.baretto.mcq.datamodel.Choice;
+import com.jack_baretto.platiniumquiz.R;
 
 import java.util.List;
 

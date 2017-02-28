@@ -1,4 +1,4 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.Choice;
 import com.baretto.mcq.datamodel.Question;
+import com.jack_baretto.platiniumquiz.R;
 
 import java.util.ArrayList;
 import java.util.List;

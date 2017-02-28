@@ -8,6 +8,8 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.baretto.mcq.datamodel.MCQ;
+import fr.baretto.scrumquiz.QuestionActivity;
+import fr.baretto.scrumquiz.QuestionFragment;
 
 import org.junit.Before;
 import org.junit.Rule;

@@ -1,9 +1,10 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import com.baretto.mcq.datamodel.MCQ;
 import com.baretto.mcq.datamodel.Question;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.jack_baretto.platiniumquiz.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +33,7 @@ public class ResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+       super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_result);
 
@@ -48,7 +50,6 @@ public class ResultActivity extends AppCompatActivity {
         showAllSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-
                 tracker.send(new HitBuilders.EventBuilder()
                         .setCategory("Feature")
                         .setAction("use")

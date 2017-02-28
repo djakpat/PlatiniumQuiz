@@ -1,8 +1,9 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.baretto.mcq.datamodel.MCQ;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.jack_baretto.platiniumquiz.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

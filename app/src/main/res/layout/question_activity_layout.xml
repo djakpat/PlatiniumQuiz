@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/list"
-        android:name="com.jack_baretto.platiniumquiz.QuestionFragment"
+        android:name="fr.baretto.scrumquiz.QuestionFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

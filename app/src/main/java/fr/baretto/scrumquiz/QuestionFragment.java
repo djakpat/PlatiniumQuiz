@@ -1,4 +1,4 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.baretto.mcq.datamodel.Choice;
 import com.baretto.mcq.datamodel.Question;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.jack_baretto.platiniumquiz.R;
 
 import java.util.ArrayList;
 import java.util.List;
