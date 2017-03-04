@@ -17,14 +17,22 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class MainActivity extends AppCompatActivity {
 
     /** Increase the progress bar's progress by this specified amount. */
     private static final int QUESTION_INCREMENT = 10;
+    public static final String PARAMETER_SPEC = "RandomInitVector";
+    public static final String KEY = "123azertyuhgfq'(";
     Tracker tracker;
     /** Number of questions progress bar. */
     private SeekBar seekBar;
@@ -152,16 +160,37 @@ public class MainActivity extends AppCompatActivity {
      * @throws IOException
      */
     private MCQ generateMCQ() throws IOException {
-        InputStream inputStream = getResources().openRawResource(R.raw.mcqs);
+        InputStream inputStream = getResources().openRawResource(R.raw.encrypted);
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         int length;
         while ((length = inputStream.read()) != -1) {
             stream.write(length);
         }
-        String json = stream.toString();
+        String json = decrypt(stream.toString());
         final int numberOfQuestions = progressConverter(seekBar.getProgress());
         return new MCQ(json, numberOfQuestions);
+
+    }
+
+
+    private String decrypt(String encrypted) {
+        try {
+            IvParameterSpec iv = new IvParameterSpec(PARAMETER_SPEC.getBytes("UTF-8"));
+            SecretKeySpec skeySpec = new SecretKeySpec(KEY.getBytes("UTF-8"), "AES");
+
+
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+
+            byte[] bytes = android.util.Base64.decode(encrypted, android.util.Base64.DEFAULT);
+            byte[] original = cipher.doFinal(bytes);
+
+            return new String(original);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 

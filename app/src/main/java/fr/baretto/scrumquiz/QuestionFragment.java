@@ -260,9 +260,7 @@ public class QuestionFragment extends Fragment {
     private List<Question> getMCQQuestions() {
 
         QuestionActivity activity = (QuestionActivity) this.getActivity();
-
-        List<Question> questions = new ArrayList<>(activity.getMcq().getQuestions());
-        return questions;
+        return activity.getMcq().getQuestions();
     }
 
     /**

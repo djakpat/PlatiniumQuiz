@@ -15,8 +15,8 @@
 # instead you will need to point to the
 # "proguard-android-optimize.txt" file instead of this one from your
 # project.properties file.
+-keepattributes *Annotation*,EnclosingMethod
 
--keepattributes *Annotation*
 -keep public class com.google.vending.licensing.ILicensingService
 -keep public class com.android.vending.licensing.ILicensingService
 
@@ -61,6 +61,30 @@
 
 -keep @android.support.annotation.Keep class * {*;}
 
+-keep class android.test.**
+-dontwarn android.test.**
+
+-keep class com.fasterxml.jackson.**
+-dontwarn com.fasterxml.jackson.**
+
+-keep class org.junit.**
+-dontwarn org.junit.**
+
+-dontwarn com.baretto.mcq.datamodel.**
+-keep class com.baretto.mcq.datamodel.** {
+   void set*(***);
+      void set*(int, ***);
+private <fields>;
+      boolean is*();
+      boolean is*(int);
+
+      *** get*();
+      *** get*(int);
+}
+
+-keep class org.slf4j.**
+-dontwarn org.slf4j.**
+
 -keepclasseswithmembers class * {
     @android.support.annotation.Keep <methods>;
 }
@@ -72,3 +96,12 @@
 -keepclasseswithmembers class * {
     @android.support.annotation.Keep <init>(...);
 }
+-keep class java.util.**
+-dontwarn java.util.**
+
+-dontoptimize
+-keepclassmembers class **.R$* {public static <fields>;}
+-keepclassmembers public final enum org.codehaus.jackson.annotate.JsonAutoDetect$Visibility { public static final org.codehaus.jackson.annotate.JsonAutoDetect$Visibility *; }
+-keepattributes Signature
+-keepnames class com.fasterxml.jackson.** { *; }
+-dontwarn com.fasterxml.jackson.databind.**
