@@ -51,7 +51,7 @@ public class ResultFragment extends Fragment {
 
 
 
-        //setRetainInstance(true);
+        setRetainInstance(true);
     }
 
     @Override
