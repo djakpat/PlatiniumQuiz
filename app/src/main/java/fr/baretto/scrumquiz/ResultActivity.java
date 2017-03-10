@@ -35,10 +35,6 @@ public class ResultActivity extends BaseActivity {
             resultFragment = new ResultFragment();
             fragmentManager.beginTransaction().add(resultFragment, RETAINED_FRAGMENT).commit();
         }
-
-
-
-
     }
 
     public MCQ getMCQ() {
