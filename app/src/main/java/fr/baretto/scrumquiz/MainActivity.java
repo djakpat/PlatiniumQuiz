@@ -27,7 +27,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     /** Increase the progress bar's progress by this specified amount. */
     private static final int QUESTION_INCREMENT = 10;
@@ -100,31 +100,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //@FIXME : code duplicate from QuestionActivity
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.restart:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.about:
-                Intent aboutUs = new Intent(this, AboutActivity.class);
-                startActivity(aboutUs);
-                break;
-            case R.id.contact:
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                emailIntent.setType("text/plain");
-                emailIntent.setData(Uri.parse("mailto:scrumquiz.contact@baretto.fr"));
-                startActivity(Intent.createChooser(emailIntent,
-                        "Send Email Using: "));
-                break;
-            default:
-                break;
-        }
 
-        return true;
-    }
+
 
 
     /**

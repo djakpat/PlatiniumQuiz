@@ -15,11 +15,10 @@
         <activity android:name="fr.baretto.scrumquiz.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="fr.baretto.scrumquiz.ResultActivity" />
+        <activity android:name="fr.baretto.scrumquiz.ResultActivity"/>
         <activity android:name="fr.baretto.scrumquiz.QuestionActivity" />
         <activity android:name="fr.baretto.scrumquiz.AboutActivity"></activity>
     </application>
