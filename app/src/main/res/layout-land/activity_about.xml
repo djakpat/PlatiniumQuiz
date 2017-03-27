@@ -15,7 +15,6 @@
         android:text="@string/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
         android:id="@+id/description"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -27,16 +26,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/website"
         android:autoLink="web"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/logo" />
+        android:layout_alignTop="@+id/logo"
+        android:layout_alignEnd="@+id/developedby"
+        android:layout_marginEnd="27dp"
+        android:layout_marginTop="41dp" />
 
     <TextView
         android:text="@string/developedby"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/developedby"
-        android:layout_marginBottom="12dp"
-        android:layout_above="@+id/logo"
+        android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
     <ImageView
@@ -47,9 +47,9 @@
         android:maxWidth="100dp"
      android:maxHeight="100dp"
      android:id="@+id/logo"
-        android:layout_marginStart="102dp"
-        android:layout_marginBottom="27dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/developedby"
+        android:layout_toStartOf="@+id/website"
+        android:layout_marginEnd="92dp"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
