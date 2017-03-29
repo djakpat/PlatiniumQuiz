@@ -1,4 +1,4 @@
-package fr.baretto.scrumquiz;
+package fr.baretto.scrumquiz.psm1;
 
 import android.graphics.Color;
 import android.os.Bundle;

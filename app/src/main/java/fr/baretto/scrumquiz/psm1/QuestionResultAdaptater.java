@@ -1,4 +1,4 @@
-package fr.baretto.scrumquiz;
+package fr.baretto.scrumquiz.psm1;
 
 import android.content.Context;
 import android.graphics.Typeface;

@@ -1,4 +1,4 @@
-package fr.baretto.scrumquiz;
+package fr.baretto.scrumquiz.psm1;
 
 
 import android.support.v7.app.AppCompatActivity;
