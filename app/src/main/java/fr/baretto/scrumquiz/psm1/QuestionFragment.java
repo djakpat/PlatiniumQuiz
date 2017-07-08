@@ -1,4 +1,4 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz.psm1;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,13 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.baretto.mcq.datamodel.AnswerConstraint;
 import com.baretto.mcq.datamodel.Choice;
 import com.baretto.mcq.datamodel.Question;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class QuestionFragment extends Fragment {
      * Adapter used for the print the choices.
      */
     ChoiceAdapter adapter;
+    Tracker tracker;
     /*
      * View for the answer choices.
      */
@@ -45,9 +47,6 @@ public class QuestionFragment extends Fragment {
      * Vie for the MCQ question number.
      */
     private TextView questionNumber;
-
-
-    private TextView timer;
     /**
      * Button to go to the previous question.
      */
@@ -69,6 +68,17 @@ public class QuestionFragment extends Fragment {
      */
     private int currentPageIndex = 0;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
+        tracker = application.getDefaultTracker();
+        tracker.setScreenName("QuestionFragment");
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        setRetainInstance(true);
+    }
 
     @Nullable
     @Override
@@ -85,7 +95,6 @@ public class QuestionFragment extends Fragment {
         choicesView = (ListView) view.findViewById(R.id.choicesView);
         resultButton = (Button) view.findViewById(R.id.result);
         questionNumber = (TextView) view.findViewById(R.id.questionNumber);
-        timer = (TextView) view.findViewById(R.id.timer);
         addPreviousButton(view);
         addNextButton(view);
     }
@@ -95,8 +104,6 @@ public class QuestionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         questions = this.getMCQQuestions();
 
-        this.launchTimer();
-
         Question question = questions.get(currentPageIndex);
         questionView.setText(question.getLabel());
         constraintView.setText(retrieveConstraintLabel(question));
@@ -105,16 +112,24 @@ public class QuestionFragment extends Fragment {
         questionNumber.setText(questionNumberValue);
 
         List<Choice> datas = new ArrayList<>();
-        datas.addAll(questions.get(0).getChoices());
-        adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, false);
+        datas.addAll(question.getChoices());
+
+        boolean isSingleChoice = isSingleChoice(question);
+
+
+        adapter = new ChoiceAdapter(this.getActivity(), R.layout.choice, datas, isSingleChoice);
         choicesView.setAdapter(adapter);
 
     }
 
-    private void launchTimer() {
-        QuestionActivity activity = (QuestionActivity) this.getActivity();
-        activity.initializeTimer();
+    private boolean isSingleChoice(Question question) {
+        boolean isSingleChoice = false;
+        if (question.getAnswerConstraint().equals(AnswerConstraint.ONE_RESPONSE)) {
+            isSingleChoice = true;
+        }
+        return isSingleChoice;
     }
+
 
     @NonNull
     private String retrieveQuestionNumberValue() {
@@ -129,7 +144,9 @@ public class QuestionFragment extends Fragment {
      */
     private void addPreviousButton(View view) {
         previousButton = (Button) view.findViewById(R.id.previous);
-        previousButton.setEnabled(false);
+        if (isFirstPage()) {
+            previousButton.setEnabled(false);
+        }
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,12 +168,22 @@ public class QuestionFragment extends Fragment {
                 nextButtonAction();
             }
         });
+        if (isLastPage()) {
+            nextButton.setEnabled(false);
+            resultButton.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
      * Refresh the MCQ question, actualize buttons state.
      */
     private void nextButtonAction() {
+
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("BUTTON")
+                .setAction("NEXT")
+                .build());
+
         this.updateSelectedChoice();
         currentPageIndex++;
         refreshQuestion();
@@ -171,6 +198,12 @@ public class QuestionFragment extends Fragment {
      * Refresh the MCQ question, actualize buttons state.
      */
     private void previousButtonAction() {
+
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("BUTTON")
+                .setAction("PREV")
+                .build());
+
         this.updateSelectedChoice();
         currentPageIndex--;
         refreshQuestion();
@@ -190,9 +223,9 @@ public class QuestionFragment extends Fragment {
         constraintView.setText(retrieveConstraintLabel(question));
         String questionNumberValue = retrieveQuestionNumberValue();
         questionNumber.setText(questionNumberValue);
-        adapter.clear();
-        adapter.addAll(question.getChoices());
-        adapter.notifyDataSetChanged();
+        final boolean isSingleChoice = isSingleChoice(question);
+        adapter.addChoices(question.getChoices(), isSingleChoice);
+
     }
 
     private String retrieveConstraintLabel(Question question) {
@@ -227,9 +260,7 @@ public class QuestionFragment extends Fragment {
     private List<Question> getMCQQuestions() {
 
         QuestionActivity activity = (QuestionActivity) this.getActivity();
-
-        List<Question> questions = new ArrayList<>(activity.getMcq().getQuestions());
-        return questions;
+        return activity.getMcq().getQuestions();
     }
 
     /**
@@ -250,7 +281,4 @@ public class QuestionFragment extends Fragment {
         return currentPageIndex == 0;
     }
 
-    public void updateTimer(long remaingTimeInSecond) {
-        timer.setText("Remaing time : " + String.valueOf(remaingTimeInSecond));
-    }
 }

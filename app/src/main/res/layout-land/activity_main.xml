@@ -21,54 +21,6 @@
         android:textStyle="normal|bold" />
 
     <RelativeLayout
-    android:id="@+id/settingsLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/welcome"
-    android:layout_centerHorizontal="true"
-        android:background="@color/background"
-    android:padding="10dp">
-
-        <TextView
-            android:id="@+id/settingsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/settings_title"
-            android:textSize="18sp"
-            android:textStyle="normal|bold" />
-
-        <TextView
-            android:id="@+id/numbersOfQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/settingsTitle"
-            android:text="@string/instructions_question_number" />
-
-        <RelativeLayout
-            android:id="@+id/seekBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/numbersOfQuestion"
-            android:layout_centerHorizontal="true">
-            <SeekBar
-                android:id="@+id/seekBar"
-                style="@style/Widget.AppCompat.SeekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_margin="1dp"
-                android:contextClickable="false"
-                android:max="3"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
-                android:progress="0" />
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/instructionsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -104,6 +56,56 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/settingsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="42dp"
+        android:background="@color/background"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/settingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/settings_title"
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/numbersOfQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/settingsTitle"
+            android:text="@string/instructions_question_number" />
+
+        <RelativeLayout
+            android:id="@+id/seekBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/numbersOfQuestion"
+            android:layout_centerHorizontal="true">
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="1dp"
+                android:contextClickable="false"
+                android:max="3"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:progress="0" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
     <Button
         android:id="@+id/button"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -111,7 +113,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="53dp"
         android:background="@color/colorButton"
         android:onClick="sendMessage"
         android:text="@string/button_generate" />

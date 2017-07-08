@@ -1,4 +1,4 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz.psm1;
 
 import org.junit.Test;
 

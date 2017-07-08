@@ -1,7 +1,8 @@
-package com.jack_baretto.platiniumquiz;
+package fr.baretto.scrumquiz.psm1;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.baretto.mcq.datamodel.Question;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by WORK on 27/01/2017.
@@ -38,8 +40,13 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
-        List<Choice> choices = new ArrayList<>(dataQuestions.get(groupPosition).getChoices());
-        return choices.get(childPosititon);
+        final Question question = dataQuestions.get(groupPosition);
+        List<Choice> choices = new ArrayList<>(question.getChoices());
+        if (childPosititon < choices.size()) {
+            return choices.get(childPosititon);
+        } else {
+            return question.getCorrection();
+        }
     }
 
     @Override
@@ -51,7 +58,6 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final Choice childChoice = (Choice) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -62,36 +68,60 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.lblListItem);
 
-        txtListChild.setText(childChoice.getLabel());
+        final Object child = getChild(groupPosition, childPosition);
 
         ImageView selectedImage = (ImageView) convertView.findViewById(R.id.selected);
         ImageView answerImage = (ImageView) convertView.findViewById(R.id.answer);
+        ImageView infoImage = (ImageView) convertView.findViewById(R.id.info);
         selectedImage.setVisibility(View.GONE);
         answerImage.setVisibility(View.GONE);
+        infoImage.setVisibility(View.GONE);
+        if (child instanceof Choice) {
+            updateChoiceView(groupPosition, convertView, txtListChild, (Choice) child, selectedImage, answerImage);
+        } else {
+            final String childString = (String) child;
+            txtListChild.setText(childString);
+            infoImage.setVisibility(View.VISIBLE);
+        }
+
+
+        return convertView;
+    }
+
+    private void updateChoiceView(int groupPosition, View convertView, TextView txtListChild, Choice child, ImageView selectedImage, ImageView answerImage) {
+        final Choice childChoice = child;
+        Question question = (Question) getGroup(groupPosition);
+
+
+        txtListChild.setText(childChoice.getLabel());
+
 
         if (childChoice.isSelected()) {
 
             selectedImage.setVisibility(View.VISIBLE);
         }
-        Question question = (Question) getGroup(groupPosition);
-        if (question.choiceIsCorrect(childChoice)) {
+
+        if (question.choiceIsCorrect(childChoice) && !childChoice.isSelected()) {
             answerImage.setImageResource(R.drawable.ic_action_done);
             answerImage.setVisibility(View.VISIBLE);
-            //myMenuItem.setIcon(android.R.drawable.ic_menu_save);ic_action_done
 
-        } else {
+
+        } else if (!(question.choiceIsCorrect(childChoice)) && childChoice.isSelected()) {
             answerImage.setImageResource(R.drawable.ic_content_clear);
             answerImage.setVisibility(View.VISIBLE);
 
         }
-        return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        List<Choice> choices = new ArrayList<>(dataQuestions.get(groupPosition).getChoices());
-        return choices.size();
-
+        final Question question = dataQuestions.get(groupPosition);
+        List<Choice> choices = new ArrayList<>(question.getChoices());
+        if (Objects.equals(question.getCorrection(), null)) {
+            return choices.size();
+        } else {
+            return choices.size() + 1;
+        }
     }
 
     @Override
@@ -118,6 +148,11 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_group, null);
         }
+        if (headerQuestion.answerIsCorrect()) {
+            convertView.setBackgroundColor(ContextCompat.getColor(_context, R.color.colorPrimary));
+        } else {
+            convertView.setBackgroundColor(ContextCompat.getColor(_context, R.color.wrong));
+        }
 
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.lblListHeader);
@@ -125,7 +160,7 @@ public class QuestionResultAdaptater extends BaseExpandableListAdapter {
         lblListHeader.setText(headerQuestion.getLabel());
         TextView questioNumber = (TextView) convertView.findViewById(R.id.questionNumber);
         String questionNumberValue = String.valueOf(questionNumberByQuestion.get(headerQuestion));
-        questioNumber.setText(questionNumberValue);
+        questioNumber.setText("Question " + questionNumberValue);
         return convertView;
     }
 

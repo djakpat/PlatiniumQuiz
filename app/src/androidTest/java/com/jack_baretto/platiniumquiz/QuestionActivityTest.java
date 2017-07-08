@@ -8,6 +8,8 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.baretto.mcq.datamodel.MCQ;
+import fr.baretto.scrumquiz.psm1.QuestionActivity;
+import fr.baretto.scrumquiz.psm1.QuestionFragment;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -23,7 +25,9 @@ import static org.hamcrest.Matchers.not;
  */
 @RunWith(AndroidJUnit4.class)
 public class QuestionActivityTest {
-
+    public static final String QUESTION_1="{\"label\":\"Which of the fo||owing are ro|es on a Scrum Team?\",\"choices\":[{\"label\":\"Product Owner\"},{\"label\":\"Scrum Master\"},{\"label\":\"Users\"},{\"label\":\"Customers\"},{\"label\":\"Development Team\"}],\"selectedChoices\":[],\"answerConstraint\":\"ALL_THAT_APPLY\"}";
+    public static final String QUESTION_2="{\"label\":\"Haw much work must a Development Team do to a Product Backlog item it selects for a Sprint?\",\"choices\":[{\"label\":\"As much as it has to|d the Product Owner wi|| be done for every Product Back|og item it se|ects in conformance with the\\ndeﬁnition of \\\"Done\\\".\"},{\"label\":\"A proportiona| amount of time on ana|ysis, design, programming, testing, and documentation.\"},{\"label\":\"A|| deve|opment work and at |east some testing.\"},{\"label\":\"As much as it can ﬁt into the Sprint. Any remaining work wi|| be transferred to a subsequent Sprint.\"}],\"selectedChoices\":[],\"answerConstraint\":\"ONE_RESPONSE\"}";
+    public static final String JSON = "["+ QUESTION_1 +","+QUESTION_2+"]";
     @Rule
     public ActivityTestRule<QuestionActivity> questionActivityRule = new ActivityTestRule<>(QuestionActivity.class, true, false);
 
@@ -33,7 +37,7 @@ public class QuestionActivityTest {
     @Before
     public void before() {
         Intent startIntent = new Intent();
-        startIntent.putExtra("Mcq", new MCQ(1));
+        startIntent.putExtra("Mcq", new MCQ(JSON,2));
         questionActivityRule.launchActivity(startIntent);
     }
 

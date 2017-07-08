@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">PlatiniumQuiz</string>
+    <string name="app_name">Scrum Quiz</string>
+    <string name="welcome">Welcome to Scrum Quiz</string>
     <string name="question_description">A MCQ question.</string>
     <string name="constraint_description">a MCQ question Constraint.</string>
     <string name="button_previous">Prev</string>
@@ -7,13 +8,24 @@
     <string name="button_next">Next</string>
     <string name="button_next_description">Go to the next question.</string>
     <string name="button_result_description">Get the result of the MCQ.</string>
-    <string name="button_result">View result</string>
-    <string name="button_generate">MCQ</string>
+    <string name="button_result">Finish</string>
+    <string name="button_generate">Start</string>
     <string name="switch_timer">Timer</string>
     <string name="failed">FAILED</string>
     <string name="passed">PASSED</string>
     <string name="you_have">You Have</string>
     <string name="good_answers">correct answers</string>
     <string name="wrong_answers"> Below your wrong answers</string>
-    wrong answers
+    <string name="instructions_title">Instructions</string>
+    <string name="instructions_description">The MCQ test instructions.</string>
+    <string name="instructions_question_number">Number of questions : </string>
+    <string name="instructions_pass_mark">Pass mark of : </string>
+    <string name="pass_mark_limit">85</string>
+    <string name="settings_title">Quiz settings</string>
+    <string name="about_us">About</string>
+    <string name="contact">Contact</string>
+    <string name="description">Whether you are preparing PSM1, you are coaching a new Agile team or you want to improve your knowledge of the Scrum framework,
+        this app is for you.\n\n The Scrum quiz generate an multiple-choice questionnaire
+        in order to test your knowledge of the Scrum Framework.</string>
+    <string name="developedby"> Developed by Baretto, 24 Rue Molière 59200 Tourcoing, France</string>
 </resources>
