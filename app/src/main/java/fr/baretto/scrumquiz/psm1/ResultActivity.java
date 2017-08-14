@@ -1,11 +1,15 @@
 package fr.baretto.scrumquiz.psm1;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.baretto.mcq.datamodel.MCQ;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+
+import java.io.IOException;
 
 
 public class ResultActivity extends BaseActivity {
@@ -37,6 +41,11 @@ public class ResultActivity extends BaseActivity {
         }
     }
 
+
+    public void sendMessage(View view) throws IOException {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
     public MCQ getMCQ() {
         return mcq;
     }

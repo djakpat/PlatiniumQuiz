@@ -42,14 +42,9 @@ public class ResultFragment extends Fragment {
         tracker = application.getDefaultTracker();
         tracker.setScreenName("ResultFragment");
         tracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-
         ResultActivity resultActivity = (ResultActivity) this.getActivity();
 
         mcq = resultActivity.getMCQ();
-
-
-
 
         setRetainInstance(true);
     }
