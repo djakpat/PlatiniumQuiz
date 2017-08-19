@@ -31,13 +31,14 @@ public class ResultFragment extends Fragment {
     private TextView result;
     private TextView resultTest;
     private TextView sucessRate;
+    private TextView time;
     private TextView wrongAnswers;
     private ExpandableListView expandableListView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+Timer.getInstance().stop();
         AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
         tracker = application.getDefaultTracker();
         tracker.setScreenName("ResultFragment");
@@ -58,6 +59,8 @@ public class ResultFragment extends Fragment {
         wrongAnswers = (TextView) view.findViewById(R.id.wrong_answer);
         showAllSwitch = (Switch) view.findViewById(R.id.showAll);
         expandableListView = (ExpandableListView) view.findViewById(R.id.resultQuestionView);
+        time = (TextView) view.findViewById(R.id.time);
+
         showAllSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -102,14 +105,12 @@ public class ResultFragment extends Fragment {
             }
             questionNumber++;
         }
-
         showResult(goodResponse, mcq.getQuestions().size());
-
         updateResultListView(checked, questionNumberByQuestion, failedQuestions);
+        time.setText(Timer.getInstance().time());
     }
 
     private void updateResultListView(boolean checked, Map<Question, Integer> questionNumberByQuestion, List<Question> failedQuestions) {
-
         QuestionResultAdaptater questionResultAdaptater = null;
         if (checked) {
             questionResultAdaptater = new QuestionResultAdaptater((ResultActivity) this.getActivity(), mcq.getQuestions(), questionNumberByQuestion);
@@ -122,15 +123,10 @@ public class ResultFragment extends Fragment {
     }
 
     private void showResult(int goodResponse, int questionsSize) {
-
         int resulRate = Math.round(((float) goodResponse / (float) questionsSize) * 100);
-
         if (resulRate < minimumSucessRate) {
-
             updateResulText(goodResponse, getString(R.string.failed), Color.RED, resulRate + "%", questionsSize);
-
         } else {
-
             updateResulText(goodResponse, getString(R.string.passed), Color.GREEN, resulRate + "%", questionsSize);
         }
 

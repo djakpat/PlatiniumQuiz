@@ -122,6 +122,7 @@ public class MainActivity extends BaseActivity {
 
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("Mcq", mcq);
+        Timer.getInstance().start();
         startActivity(intent);
     }
 

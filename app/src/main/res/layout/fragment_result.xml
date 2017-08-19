@@ -7,7 +7,7 @@
     android:weightSum="1">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
@@ -17,7 +17,7 @@
             android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
+            android:layout_marginRight="19dp"
             android:paddingLeft="6dp"
             android:text="RESULT"
             android:textSize="24sp" />
@@ -28,7 +28,25 @@
             android:layout_height="wrap_content"
             android:text="RATE"
             android:textSize="24sp" />
+
+
+        <TextView
+            android:id="@+id/timeLabel"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:text="@string/time_label"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/time"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:textSize="20sp" />
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/resultText"

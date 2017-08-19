@@ -29,4 +29,5 @@
         in order to test your knowledge of the Scrum Framework.</string>
     <string name="developedby">Developed by Baretto, 24 Rue Molière 59200 Tourcoing, France</string>
     <string name="button_start_new_quiz">NEW QUIZ</string>
+    <string name="time_label">Time elapsed</string>
 </resources>
