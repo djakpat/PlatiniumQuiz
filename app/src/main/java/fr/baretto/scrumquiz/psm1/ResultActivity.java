@@ -43,6 +43,13 @@ public class ResultActivity extends BaseActivity {
 
 
     public void sendMessage(View view) throws IOException {
+
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory("BUTTON")
+                .setAction("startNewQuiz")
+                .setValue(mcq.getQuestions().size())
+                .build());
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
