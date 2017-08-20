@@ -1,18 +1,26 @@
 package fr.baretto.scrumquiz.psm1;
 
+import android.app.Activity;
+import android.os.SystemClock;
+import android.widget.Chronometer;
+
 import java.util.Date;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by mehdi on 19/08/17.
  */
 
-public class Timer {
-
+public class Timer extends Activity{
+private final java.util.Timer timer= new java.util.Timer();
     private static Timer INSTANCE;
 
    private Date startDate;
     private Date endDate;
+private long elapsedTime;
+    private long currentTime;
+    public boolean cont;
 
     private Timer(){
 
@@ -26,32 +34,48 @@ public class Timer {
     }
     public void start(){
         startDate = new Date();
+        cont=true;
+        launch();
     }
 
     public void stop(){
         endDate = new Date();
+        cont=false;
     }
 
     public void reset(){
         startDate = null;
         endDate = null;
+        cont=false;
+        elapsedTime=0;
+
     }
 
     public String time(){
-        long diff = endDate.getTime() - startDate.getTime();//as given
+       return  String.format("%d'%d''",
+                TimeUnit.MILLISECONDS.toMinutes(elapsedTime),
+                TimeUnit.MILLISECONDS.toSeconds(elapsedTime) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(elapsedTime))
+        );
+    }
 
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(diff);
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
-        StringBuilder result = new StringBuilder();
-        if(minutes<10){
-            result.append("0");
-        }
-        result.append(minutes);
-        result.append(":");
-        if(seconds<10){
-            result.append("0");
-        }
-        result.append(seconds);
-        return result.toString();
+
+    private void launch() {
+        timer.schedule(new TimerTask(){
+
+            @Override
+            public void run() {
+
+                Timer.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        if(cont) {
+                            Timer.this.currentTime = System.currentTimeMillis();
+                            Timer.this.elapsedTime = Timer.this.currentTime - Timer.this.startDate.getTime();
+
+                        }
+                    }
+                });
+            }
+        }, 0, 100);
     }
 }
