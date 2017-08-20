@@ -51,6 +51,7 @@ public class MainActivity extends BaseActivity {
 
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.incrementProgressBy(QUESTION_INCREMENT);
+        seekBar.setProgress(1);
         numbersOfQuestion = (TextView) findViewById(R.id.numbersOfQuestion);
         numbersOfQuestion.setText(Html.fromHtml(getString(R.string.instructions_question_number) + "<b>" + Integer.toString(progressConverter(seekBar.getProgress())) + "</b>"));
         instructions = (TextView) findViewById(R.id.instructions);
